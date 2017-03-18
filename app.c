@@ -14,13 +14,13 @@ int helpmenu() {
   printf("Banking v0\n");
   printf("---------------------------------------\n");
   printf("Available commands:\n");
-  printf("account - Start working with an account.\n");
-  printf("balance - Gets avaialble balance.\n");
+  printf("account\t - Start working with an account.\n");
+  printf("balance\t - Gets avaialble balance.\n");
   printf("withdraw - Withdraw funds from an account.\n");
-  printf("deposit - Deposit funds into an account.\n");
+  printf("deposit\t - Deposit funds into an account.\n");
   printf("transfer - Transfer funds from one account into another account.\n");
-  printf("charge - Charge a balance to your account\n");
-  printf("check - Withdraw funds using a paper cheque.\n");
+  printf("charge\t - Charge a balance to your account\n");
+  printf("check\t - Withdraw funds using a paper cheque.\n");
   return 0;
 }
 int account(int number[]) {
@@ -32,11 +32,11 @@ int main() {
   helpmenu();
   while(1) {
     gets(menuselection);
-    if(menuselection == "account") {
-      printf("...");
-    }
-    if(menuselection == "menu" || menuselection == "help") {
+    printf(menuselection);
+    if(strcmmp("menu", menuselection) || strcmp("help", menuselection)) {
       helpmenu();
+    } else {
+      printf("Unknown command.\n");
     }
   }
 }
