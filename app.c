@@ -21,6 +21,7 @@ int helpmenu() {
   printf("transfer - Transfer funds from one account into another account.\n");
   printf("charge\t - Charge a balance to your account\n");
   printf("check\t - Withdraw funds using a paper cheque.\n");
+  printf("help\t - This menu.");
   return 0;
 }
 int account(int number[]) {
@@ -33,8 +34,10 @@ int main() {
   while(1) {
     gets(menuselection);
     printf(menuselection);
-    if(strcmmp("menu", menuselection) || strcmp("help", menuselection)) {
+    if(strcmp("menu", menuselection) || strcmp("help", menuselection)) {
       helpmenu();
+    } else if(strcmp("account", menuselection)) {
+      //do account stuff here.
     } else {
       printf("Unknown command.\n");
     }
