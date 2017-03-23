@@ -32,9 +32,9 @@ int main() {
   // Handle the menu.
   helpmenu();
   while(1) {
-    gets(menuselection);
-    printf(menuselection);
-    if(strcmp("menu", menuselection) || strcmp("help", menuselection)) {
+    scanf("%s", menuselection);
+    printf("%s\n");
+    if(strcmp("menu", "%s") || strcmp("help", "%ss")) {
       helpmenu();
     } else if(strcmp("account", menuselection)) {
       //do account stuff here.
