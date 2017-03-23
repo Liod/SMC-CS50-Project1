@@ -12,7 +12,7 @@
 
 int helpmenu() {
   printf("Banking v0\n");
-  printf("---------------------------------------\n");
+  printf("----------------------------------------------------------------\n");
   printf("Available commands:\n");
   printf("account\t - Start working with an account.\n");
   printf("balance\t - Gets avaialble balance.\n");
@@ -25,7 +25,10 @@ int helpmenu() {
   return 0;
 }
 int account(int number[]) {
-
+  char accnumStr[10];
+  itoa(number, accnumStr);
+  char accountFile[14] = strcpy(".txt", accnumStr);
+  FILE *accountdata = fopen(accountFile, "w+");
 }
 int main() {
   char menuselection[100];
@@ -33,8 +36,8 @@ int main() {
   helpmenu();
   while(1) {
     scanf("%s", menuselection);
-    printf("%s\n");
-    if(strcmp("menu", "%s") || strcmp("help", "%ss")) {
+    printf("%s\n", menuselection);
+    if(strcmp("menu", "%s") || strcmp("help", "%s")) {
       helpmenu();
     } else if(strcmp("account", menuselection)) {
       //do account stuff here.
