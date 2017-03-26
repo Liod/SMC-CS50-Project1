@@ -21,23 +21,36 @@ int helpmenu() {
   printf("transfer - Transfer funds from one account into another account.\n");
   printf("charge\t - Charge a balance to your account\n");
   printf("check\t - Withdraw funds using a paper cheque.\n");
-  printf("help\t - This menu.");
+  printf("help\t - This menu.\n");
   return 0;
 }
-int account(int number[]) {
+int createAccount(char* accDetails[3]) {
+  // First name
+  char *firstName = accDetails[0];
+  // Last name
+  char *lastName = accDetails[1];
+  // Keep this number as a string, because it has a dash in it.
+  char *accNumber = accDetails[2];
+  return 0;
+}
+/*
+int openAccountFile(int number[]) {
   char accnumStr[10];
   _itoa_s(number, accnumStr);
-  char* accountFile[14] = strcpy(".txt", accnumStr);
+  char accountFile[14];
+  //strcpy(".txt", accnumStr);
   FILE *accountdata = fopen(accountFile, "w+");
 }
+*/
 int main() {
   char menuselection[100];
   // Handle the menu.
   helpmenu();
   while(1) {
-    scanf("%s", menuselection);
+    char menuselection[20];
+    gets(menuselection);
     printf("%s\n", menuselection);
-    if(strcmp("menu", "%s") || strcmp("help", "%s")) {
+    if(strcmp("menu", "%s") == 0 || strcmp("help", "%s") == 0) {
       helpmenu();
     } else if(strcmp("account", menuselection)) {
       //do account stuff here.
