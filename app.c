@@ -26,8 +26,8 @@ int helpmenu() {
 }
 int account(int number[]) {
   char accnumStr[10];
-  itoa(number, accnumStr);
-  char accountFile[14] = strcpy(".txt", accnumStr);
+  _itoa_s(number, accnumStr);
+  char* accountFile[14] = strcpy(".txt", accnumStr);
   FILE *accountdata = fopen(accountFile, "w+");
 }
 int main() {
