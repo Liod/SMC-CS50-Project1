@@ -1,2 +1,0 @@
-cl app.c
-app
