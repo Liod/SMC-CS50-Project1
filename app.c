@@ -1,12 +1,8 @@
-/*
-@author Hunter Nakagawa
-@date March 17, 2017
-@class CS50, Prof. Paiola
-*/
 #include <stdio.h>
 #include <ctype.h>
 #include <stdlib.h>
 #include <string.h>
+#include <error.h>
 
 #define ACCOUNT_SIZE 10
 
