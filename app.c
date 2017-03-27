@@ -49,11 +49,10 @@ int main() {
   while(1) {
     char menuselection[20];
     gets(menuselection);
-    printf("%s\n", menuselection);
-    if(strcmp("menu", "%s") == 0 || strcmp("help", "%s") == 0) {
+    if(strcmp("menu", menuselection) == 0 || strcmp("help", menuselection) == 0) {
       helpmenu();
-    } else if(strcmp("account", menuselection)) {
-      //do account stuff here.
+    } else if(strcmp("account", menuselection) == 0) {
+      printf("account();\n");
     } else {
       printf("Unknown command.\n");
     }
