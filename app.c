@@ -42,7 +42,6 @@ int accountExists(char *accountNum) {
 	}
    	return(0);
 }
-
 // incomplete.
 int balance(char* accountNum[ACCOUNT_NUM_SIZE]) {
   FILE *accountFile = fopen("accounts.txt", "r");
@@ -52,7 +51,7 @@ int balance(char* accountNum[ACCOUNT_NUM_SIZE]) {
 int withdraw(char* accountNum[ACCOUNT_NUM_SIZE], int amount) {
   if(accountExists(accountNum) == "true") {
     FILE *accountFile = fopen_s(&accountFile, accountNum + ".txt", "w+");
-    
+
   }
   return 0;
 }
