@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define ACCOUNT_SIZE 10
+#define ACCOUNT_NUM_SIZE 10
 
 int helpmenu() {
   printf("Banking v0\n");
@@ -20,19 +20,19 @@ int helpmenu() {
   return 0;
 }
 // incomplete.
-int balance(char* accountNum[10]) {
+int balance(char* accountNum[ACCOUNT_NUM_SIZE]) {
   FILE *accountFile = fopen("accounts.txt", "r");
 }
 //incomplete.
-int withdraw(char* accountNum[10], int amount) {
+int withdraw(char* accountNum[ACCOUNT_NUM_SIZE], int amount) {
 
 }
 //incomplete.
-int deposit(char* accountNum[10], int amount) {
+int deposit(char* accountNum[ACCOUNT_NUM_SIZE], int amount) {
 
 }
 //waiting on the other incomplete functions.
-int wire(char* originAcc[10], char* destAcc[10], int amount) {
+int wire(char* originAcc[ACCOUNT_NUM_SIZE], char* destAcc[ACCOUNT_NUM_SIZE], int amount) {
   withdraw(originAcc, amount);
   deposit(destAcc, amount);
   return 0;
