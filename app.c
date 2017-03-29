@@ -19,12 +19,19 @@ int helpmenu() {
   printf("help\t - This menu.\n");
   return 0;
 }
+// incomplete.
+int balance(char* accountNum[10]) {
+  FILE *accountFile = fopen("accounts.txt", "r");
+}
+//incomplete.
 int withdraw(char* accountNum[10], int amount) {
 
 }
+//incomplete.
 int deposit(char* accountNum[10], int amount) {
 
 }
+//waiting on the other incomplete functions.
 int wire(char* originAcc[10], char* destAcc[10], int amount) {
   withdraw(originAcc, amount);
   deposit(destAcc, amount);
