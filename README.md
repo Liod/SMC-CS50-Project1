@@ -49,3 +49,4 @@ Transaction Type | Amount | Balance
 - transfer functionality between accounts.
 - write stuff to file.
 - store name-account# associations in a flatfile.
+- authentication.
