@@ -43,3 +43,9 @@ Transaction Type | Amount | Balance
 5-Purchase | 330.00 | 10.00
 
              Total  Available  : $ 10.00
+
+## TODO
+- wire function (copy/paste it when done).
+- transfer functionality between accounts.
+- write stuff to file.
+- store name-account# associations in a flatfile.

@@ -2,7 +2,6 @@
 #include <ctype.h>
 #include <stdlib.h>
 #include <string.h>
-#include <errors.h>
 
 #define ACCOUNT_SIZE 10
 
@@ -20,6 +19,7 @@ int helpmenu() {
   printf("help\t - This menu.\n");
   return 0;
 }
+
 int createAccount(char* accDetails[3]) {
   // First name
   char *firstName = accDetails[0];
