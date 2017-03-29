@@ -2,7 +2,7 @@
 #include <ctype.h>
 #include <stdlib.h>
 #include <string.h>
-#include <error.h>
+#include <errors.h>
 
 #define ACCOUNT_SIZE 10
 
@@ -15,8 +15,8 @@ int helpmenu() {
   printf("withdraw - Withdraw funds from an account.\n");
   printf("deposit\t - Deposit funds into an account.\n");
   printf("transfer - Transfer funds from one account into another account.\n");
-  printf("charge\t - Charge a balance to your account\n");
-  printf("check\t - Withdraw funds using a paper cheque.\n");
+  printf("charge\t - Charge a balance to your account.\n");
+  printf("wire\t - Wire funds from one account to another.\n");
   printf("help\t - This menu.\n");
   return 0;
 }
