@@ -19,7 +19,17 @@ int helpmenu() {
   printf("help\t - This menu.\n");
   return 0;
 }
+int withdraw(char* accountNum[10], int amount) {
 
+}
+int deposit(char* accountNum[10], int amount) {
+
+}
+int wire(char* originAcc[10], char* destAcc[10], int amount) {
+  withdraw(originAcc, amount);
+  deposit(destAcc, amount);
+  return 0;
+}
 int createAccount(char* accDetails[3]) {
   // First name
   char *firstName = accDetails[0];
