@@ -19,17 +19,46 @@ int helpmenu() {
   printf("help\t - This menu.\n");
   return 0;
 }
+int accountExists(char *accountNum) {
+	FILE *fp;
+	int line_num = 1;
+	int find_result = 0;
+	char temp[512];
+	if((fopen_s(&fp, "accounts.txt", "r")) != NULL) {
+		return(-1);
+	}
+	while(fgets(temp, 512, fp) != NULL) {
+		if((strstr(temp, accountNum)) != NULL) {
+      printf("true");
+			find_result++;
+		}
+		line_num++;
+	}
+	if(find_result == 0) {
+		printf("false");
+	}
+	if(fp) {
+		fclose(fp);
+	}
+   	return(0);
+}
+
 // incomplete.
 int balance(char* accountNum[ACCOUNT_NUM_SIZE]) {
   FILE *accountFile = fopen("accounts.txt", "r");
+  return 0;
 }
 //incomplete.
 int withdraw(char* accountNum[ACCOUNT_NUM_SIZE], int amount) {
-
+  if(accountExists(accountNum) == "true") {
+    FILE *accountFile = fopen_s(&accountFile, accountNum + ".txt", "w+");
+    
+  }
+  return 0;
 }
 //incomplete.
 int deposit(char* accountNum[ACCOUNT_NUM_SIZE], int amount) {
-
+  return 0;
 }
 //waiting on the other incomplete functions.
 int wire(char* originAcc[ACCOUNT_NUM_SIZE], char* destAcc[ACCOUNT_NUM_SIZE], int amount) {
@@ -66,6 +95,8 @@ int main() {
       helpmenu();
     } else if(strcmp("account", menuselection) == 0) {
       printf("account();\n");
+    } else if(strcmp("testbalancefetch", menuselection) == 0) {
+      accountExists("1234567890-0");
     } else {
       printf("Unknown command.\n");
     }
