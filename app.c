@@ -48,6 +48,7 @@ int balance(char* accountNum[ACCOUNT_NUM_SIZE]) {
   return 0;
 }
 //incomplete.
+/*
 int withdraw(char* accountNum[ACCOUNT_NUM_SIZE], int amount) {
   if(accountExists(accountNum) == "true") {
     FILE *accountFile = fopen_s(&accountFile, accountNum + ".txt", "w+");
@@ -55,13 +56,14 @@ int withdraw(char* accountNum[ACCOUNT_NUM_SIZE], int amount) {
   }
   return 0;
 }
+*/
 //incomplete.
 int deposit(char* accountNum[ACCOUNT_NUM_SIZE], int amount) {
   return 0;
 }
 //waiting on the other incomplete functions.
 int wire(char* originAcc[ACCOUNT_NUM_SIZE], char* destAcc[ACCOUNT_NUM_SIZE], int amount) {
-  withdraw(originAcc, amount);
+  //withdraw(originAcc, amount);
   deposit(destAcc, amount);
   return 0;
 }
@@ -89,6 +91,7 @@ int main() {
   helpmenu();
   while(1) {
     char menuselection[20];
+    printf("> ");
     gets(menuselection);
     if(strcmp("menu", menuselection) == 0 || strcmp("help", menuselection) == 0) {
       helpmenu();
@@ -96,8 +99,18 @@ int main() {
       printf("account();\n");
     } else if(strcmp("testbalancefetch", menuselection) == 0) {
       accountExists("1234567890-0");
+    } else if(strcmp("withdraw", menuselection) == 0) {
+      printf("still gotta do this lol\n");
+    } else if(strcmp("deposit", menuselection) == 0) {
+      char* accountNum;
+      int totalDeposit;
+      printf("Account number: ");
+      gets(accountNum);
+      printf("How much would you like to deposit today? $");
+      gets(totalDeposit);
+      deposit(accountNum, totalDeposit);
     } else {
-      printf("Unknown command.\n");
+      printf("Unknown command. :(\n");
     }
   }
 }
