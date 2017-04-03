@@ -50,3 +50,6 @@ Transaction Type | Amount | Balance
 - write stuff to file.
 - store name-account# associations in a flatfile.
 - authentication.
+
++ add account value(balance) variable / data container
+
