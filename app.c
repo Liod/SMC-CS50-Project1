@@ -43,8 +43,30 @@ int accountExists(char *accountNum) {
    	return(0);
 }
 // incomplete.
-int balance(char* accountNum[ACCOUNT_NUM_SIZE]) {
-  FILE *accountFile = fopen("accounts.txt", "r");
+int balance() {
+	char * buffer = 0;
+	long length;
+  FILE *accountFile = fopen("TransGroup06.txt", "r");
+  char * findBalIdentifier = '$';
+	char * bal;
+  if (accountFile)
+  {
+	  fseek(accountFile, 0, SEEK_END);
+	  length = ftell(accountFile);
+	  fseek(accountFile, 0, SEEK_SET);
+	  buffer = malloc(length);
+	  if (buffer)
+	  {
+		  fread(buffer, 1, length, accountFile);
+	  }
+	  fclose(accountFile);
+  }
+  char * fileContents = buffer;
+  if (buffer)
+  {
+	  bal = strchr(fileContents, findBalIdentifier);
+	  printf(bal);
+  }
   return 0;
 }
 //incomplete.
@@ -98,12 +120,12 @@ int main() {
     } else if(strcmp("account", menuselection) == 0) {
       printf("account();\n");
     } else if(strcmp("testbalancefetch", menuselection) == 0) {
-      accountExists("1234567890-0");
+      balance();
     } else if(strcmp("withdraw", menuselection) == 0) {
       printf("still gotta do this lol\n");
     } else if(strcmp("deposit", menuselection) == 0) {
-      char* accountNum;
-      int totalDeposit;
+      char* accountNum = 0;
+      int totalDeposit = 0;
       printf("Account number: ");
       gets(accountNum);
       printf("How much would you like to deposit today? $");
