@@ -2,8 +2,11 @@
 #include <ctype.h>
 #include <stdlib.h>
 #include <string.h>
+const FILE * LOGGER = fopen("app.log", "w+");
 
 #define ACCOUNT_NUM_SIZE 10
+
+// Logging, so I can see where this is all going wrong.
 
 int helpmenu() {
   printf("Banking v0\n");
@@ -18,6 +21,11 @@ int helpmenu() {
   printf("wire\t - Wire funds from one account to another.\n");
   printf("help\t - This menu.\n");
   return 0;
+}
+int createFile() {
+	FILE * transFile = fopen("TransGroup06.txt", "w+");
+	fclose(transFile);
+	return 0;
 }
 int accountExists(char *accountNum) {
 	FILE *fp;
@@ -101,26 +109,34 @@ int main() {
 	char accountNum[20];
     if(strcmp("menu", menuselection) == 0 || strcmp("help", menuselection) == 0) {
       helpmenu();
-    } else if(strcmp("account", menuselection) == 0) {
+    } 
+	else if(strcmp("account", menuselection) == 0) {
       printf("account();\n");
-    } else if(strcmp("balance", menuselection) == 0) {
+    } 
+	else if(strcmp("balance", menuselection) == 0) {
 		printf("Account number: ");
 		gets(accountNum);
       balance(accountNum);
-    } else if(strcmp("withdraw", menuselection) == 0) {
+    } 
+	else if(strcmp("withdraw", menuselection) == 0) {
       printf("still gotta do this lol\n");
-    } else if(strcmp("deposit", menuselection) == 0) {
+    } 
+	else if(strcmp("deposit", menuselection) == 0) {
       int totalDeposit = 0;
       printf("Account number: ");
       gets(accountNum);
       printf("How much would you like to deposit today? $");
       gets(totalDeposit);
       deposit(accountNum, totalDeposit);
-    } else if(strcmp("testtemp", menuselection) == 0) {
+    } 
+	else if(strcmp("testtemp", menuselection) == 0) {
 		printf("Account number: ");
 		char accountselect[20];
 		gets(accountselect);
 		accountExists(accountselect);
+	}
+	else if(strcmp("createFile", menuselection) == 0) {
+		createFile();
 	}
 	else {
 		printf("Unknown command.");
