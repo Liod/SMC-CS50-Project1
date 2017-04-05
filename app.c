@@ -24,13 +24,14 @@ int accountExists(char *accountNum) {
 	int line_num = 1;
 	int find_result = 0;
 	char temp[512];
-	if((fopen_s(&fp, "accounts.txt", "r")) != NULL) {
+	if((fopen_s(&fp, "TransGroup06.txt", "r")) != NULL) {
 		return(-1);
 	}
 	while(fgets(temp, 512, fp) != NULL) {
 		if((strstr(temp, accountNum)) != NULL) {
       printf("true");
 			find_result++;
+			printf("\n%s\n", temp);
 		}
 		line_num++;
 	}
@@ -43,30 +44,13 @@ int accountExists(char *accountNum) {
    	return(0);
 }
 // incomplete.
-int balance() {
-	char * buffer = 0;
+int balance(char * accountNumber) {
 	long length;
-  FILE *accountFile = fopen("TransGroup06.txt", "r");
-  char * findBalIdentifier = '$';
+	char * accountline = accountExists(accountNumber);
+	char * findBalIdentifier = '$';
 	char * bal;
-  if (accountFile)
-  {
-	  fseek(accountFile, 0, SEEK_END);
-	  length = ftell(accountFile);
-	  fseek(accountFile, 0, SEEK_SET);
-	  buffer = malloc(length);
-	  if (buffer)
-	  {
-		  fread(buffer, 1, length, accountFile);
-	  }
-	  fclose(accountFile);
-  }
-  char * fileContents = buffer;
-  if (buffer)
-  {
-	  bal = strchr(fileContents, findBalIdentifier);
+	  bal = strchr(accountline, findBalIdentifier);
 	  printf(bal);
-  }
   return 0;
 }
 //incomplete.
@@ -131,8 +115,14 @@ int main() {
       printf("How much would you like to deposit today? $");
       gets(totalDeposit);
       deposit(accountNum, totalDeposit);
-    } else {
-      printf("Unknown command. :(\n");
-    }
+    } else if(strcmp("testtemp", menuselection) == 0) {
+		printf("Account number: ");
+		char accountselect[20];
+		gets(accountselect);
+		accountExists(accountselect);
+	}
+	else {
+		printf("Unknown command.");
+	}
   }
 }
