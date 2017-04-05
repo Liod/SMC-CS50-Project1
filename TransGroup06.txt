@@ -1,6 +1,6 @@
-Last Name | First Name | Account Number
+Last Name | First Name | Account Number | Balance
 
-Einstein | Albert | 12345667-0
+Einstein  | Albert     | 12345667-0     | $500
 
 Transaction Type | Amount | Balance
 

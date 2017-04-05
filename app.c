@@ -29,9 +29,8 @@ int accountExists(char *accountNum) {
 	}
 	while(fgets(temp, 512, fp) != NULL) {
 		if((strstr(temp, accountNum)) != NULL) {
-      printf("true");
 			find_result++;
-			printf("\n%s\n", temp);
+			printf("%s", temp);
 		}
 		line_num++;
 	}
@@ -99,16 +98,18 @@ int main() {
     char menuselection[20];
     printf("> ");
     gets(menuselection);
+	char accountNum[20];
     if(strcmp("menu", menuselection) == 0 || strcmp("help", menuselection) == 0) {
       helpmenu();
     } else if(strcmp("account", menuselection) == 0) {
       printf("account();\n");
-    } else if(strcmp("testbalancefetch", menuselection) == 0) {
-      balance();
+    } else if(strcmp("balance", menuselection) == 0) {
+		printf("Account number: ");
+		gets(accountNum);
+      balance(accountNum);
     } else if(strcmp("withdraw", menuselection) == 0) {
       printf("still gotta do this lol\n");
     } else if(strcmp("deposit", menuselection) == 0) {
-      char* accountNum = 0;
       int totalDeposit = 0;
       printf("Account number: ");
       gets(accountNum);
