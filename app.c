@@ -429,14 +429,19 @@ int withdraw(char* accountNum[ACCOUNT_NUM_SIZE], int amount) {
 
   printf("Hello %s%s, your current balance is:", &userFirstName[y], &userLastName[y]);
   
-  balance(AccountNum);
-
+	long length;
+	char * accountline = accountExists(accountNumber);
+	char * findBalIdentifier = '$';
+	char * bal;
+	  bal = strchr(accountline, findBalIdentifier);
+	  
   printf("now please give us amount for withdrawl");
   
   scanf("%f", &withdrawamt);
   
-  withdraw_tp = balance(AccountNum) - withdrawamt;
+  bal = bal - withdrawamt;
   
+  fclose(accountFile)
   
   
   }
