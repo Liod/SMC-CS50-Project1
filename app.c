@@ -404,10 +404,27 @@ int balance(char * accountNumber) {
   return 0;
 }
 /*
-int withdraw(char* accountNum[ACCOUNT_NUM_SIZE], int amount) {
-  if(accountExists(accountNum) == "true") {
-    FILE *accountFile = fopen_s(&accountFile, accountNum + ".txt", "w+");
 
+
+int withdraw(char* accountNum[ACCOUNT_NUM_SIZE], int amount) {
+
+  if(accountExists(accountNum) == "true") {
+  
+  FILE *accountFile = fopen_s(&accountFile, accountNum + ".txt", "w+");
+	
+
+  printf("Hello %s%s, your current balance is:", &userFirstName[y], &userLastName[y]);
+  
+  balance(AccountNum);
+
+  printf("now please give us amount for withdrawl");
+  
+  scanf("%f", &withdrawamt);
+  
+  withdraw_tp = balance(AccountNum) - withdrawamt;
+  
+  
+  
   }
   return 0;
 }
