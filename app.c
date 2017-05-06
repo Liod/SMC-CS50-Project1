@@ -460,5 +460,9 @@ int main() {
 	else if(strcmp("createFile", menuselection) == 0) {
 		createFile();
 	}
+  else if(strcmp("exit", menuselection) == 0) {
+    printf("Goodbye!");
+    exit(0);
+  }
   }
 }
