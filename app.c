@@ -90,7 +90,7 @@ int connectUser() {
         printf("What is your password?\n");
         scanf("%s", userPassword[y]);
 
-        printf("Are these informations correct? (Yes/no)\n");
+        printf("Is this information correct? (Yes/no)\n");
         printf("First Name: %s\n", userFirstName[y]);
         printf("Last Name: %s\n", userLastName[y]);
         printf("Password: %s\n", userPassword[y]);
@@ -207,7 +207,7 @@ int connectUser() {
         printf("What is your password?\n");
         scanf("%s", userPassword[y]);
 
-        printf("Are these informations correct? (Yes/no)\n");
+        printf("Is this information correct? (Yes/no)\n");
         printf("First Name: %s\n", userFirstName[y]);
         printf("Last Name: %s\n", userLastName[y]);
         printf("Password: %s\n", userPassword[y]);
@@ -215,7 +215,7 @@ int connectUser() {
         if ( strcmp( welcomeAnswer2, "Yes") == 0 )
         {
             numberOfClients = numberOfClients + 1;
-            printf("Your account has been created\n");
+            printf("Your account has been created.\n");
 
             FILE* fichier = NULL;
 
