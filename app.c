@@ -3,10 +3,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include "jansson.h"
+#include <time.h>
 
 #define ACCOUNT_NUM_SIZE 10
 #define SIZE 15
 #define a 5
+#define RAND_MAX 9
 int numberOfClients = 0;
 int y = 0;
 int connected = 0;
@@ -15,6 +17,18 @@ char userLastName[a][SIZE];
 char userPassword[a][SIZE];
 char menuAnswer[SIZE];
 char *ptr_menuAnswer = menuAnswer;
+
+int accountNumGen() {
+  int lengthOfNum = 10;
+  srand(time(NULL));
+  char accountNumber[10];
+  strcpy(accountNumber, rand());
+  while (lengthOfNum != 0) {
+    strcat(accountNumber, rand());
+  }
+  printf(accountNumber);
+  return 0;
+}
 
 int connectUser() {
 
@@ -463,6 +477,9 @@ int main() {
   else if(strcmp("exit", menuselection) == 0) {
     printf("Goodbye!");
     exit(0);
+  }
+  else if(strcmp("genAccNum", menuselection) == 0) {
+    accountNumGen();
   }
   }
 }
