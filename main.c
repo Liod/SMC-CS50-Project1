@@ -3,7 +3,6 @@
 //  Bank
 //
 //  Created by Yohan LE ROUZES on 02/04/2017.
-//  Copyright © 2017 Yohan Le Rouzes. All rights reserved.
 //
 
 #include <stdio.h>
@@ -18,7 +17,7 @@ int numberOfClients = 0;
 int y = 0;
 int connected = 0;
 char userFirstName[a][SIZE];
-char userLastName[a][SIZE];
+char userLastName[a][20];
 char userPassword[a][SIZE];
 char menuAnswer[SIZE];
 char *ptr_menuAnswer = menuAnswer;
@@ -28,7 +27,7 @@ int connectUser() {
     char welcomeAnswer[SIZE];
     char welcomeAnswer2[SIZE];
     char verifyFirstName[SIZE];
-    char verifyLastName[SIZE];
+    char verifyLastName[20];
     char verifyPassword[SIZE];
     
     printf("Welcome to the Bank App !\n");
@@ -41,8 +40,36 @@ int connectUser() {
         
         printf("What is your first name ?\n");
         scanf("%s", verifyFirstName);
+        
+        
+        if ( isupper(verifyFirstName[0]) )
+        {
+            verifyFirstName[0] = verifyFirstName[0];
+        }
+        
+        else
+        {
+            verifyFirstName[0] = toupper( verifyFirstName[0] );
+        }
+
+        
+        
         printf("What is your last name ?\n");
         scanf("%s", verifyLastName);
+        
+        
+        if ( isupper(verifyLastName[0]) )
+        {
+            verifyLastName[0] = verifyLastName[0];
+        }
+        
+        else
+        {
+            verifyLastName[0] = toupper( verifyLastName[0] );
+        }
+
+        
+        
         printf("What is your password ?\n");
         scanf("%s", verifyPassword);
         y = 0;
@@ -57,13 +84,45 @@ int connectUser() {
                 y = y + 1;
             }
         }
+        
+        printf("Sorry, it seems that your account doesn't exist\n");
+        printf("Try Again !\n");
+        
     }
     else if ( strcmp( welcomeAnswer, "yes") == 0)
     {
         printf("What is your first name ?\n");
         scanf("%s", verifyFirstName);
+        
+        
+        if ( isupper(verifyFirstName[0]) )
+        {
+            verifyFirstName[0] = verifyFirstName[0];
+        }
+        
+        else
+        {
+            verifyFirstName[0] = toupper( verifyFirstName[0] );
+        }
+
+        
+        
         printf("What is your last name ?\n");
         scanf("%s", verifyLastName);
+        
+        
+        if ( isupper(verifyLastName[0]) )
+        {
+            verifyLastName[0] = verifyLastName[0];
+        }
+        
+        else
+        {
+            verifyLastName[0] = toupper( verifyLastName[0] );
+        }
+
+        
+        
         printf("What is your password ?\n");
         scanf("%s", verifyPassword);
         y = 0;
@@ -92,9 +151,31 @@ int connectUser() {
         y = y + 1;
         printf("What is your first name ?\n");
         scanf("%s", userFirstName[y]);
+        if ( isupper(userFirstName[y][0]) )
+        {
+            userFirstName[y][0] = userFirstName[y][0];
+        }
+            
+        else
+        {
+         userFirstName[y][0] = toupper( userFirstName[y][0] );
+        }
         
         printf("What is your last name ?\n");
         scanf("%s", userLastName[y]);
+            
+        
+            if ( isupper(userLastName[y][0]) )
+            {
+                userLastName[y][0] = userLastName[y][0];
+            }
+            
+            else
+            {
+                userLastName[y][0] = toupper( userLastName[y][0] );
+            }
+    
+            
         
         printf("What is your password ?\n");
         scanf("%s", userPassword[y]);
@@ -211,10 +292,36 @@ int connectUser() {
         printf("Let's create an account\n");
         y = y + 1;
         printf("What is your first name ?\n");
-        scanf("%15s", userFirstName[y]);
+        scanf("%s", userFirstName[y]);
+            
+        
+            if ( isupper(userFirstName[y][0]) )
+            {
+                userFirstName[y][0] = userFirstName[y][0];
+            }
+            
+            else
+            {
+                userFirstName[y][0] = toupper( userFirstName[y][0] );
+            }
+    
+            
         
         printf("What is your last name ?\n");
-        scanf("%15s", userLastName[y]);
+        scanf("%s", userLastName[y]);
+            
+            
+            if ( isupper(userLastName[y][0]) )
+            {
+                userLastName[y][0] = userLastName[y][0];
+            }
+            
+            else
+            {
+                userLastName[y][0] = toupper( userLastName[y][0] );
+            }
+    
+            
         
         printf("What is your password ?\n");
         scanf("%s", userPassword[y]);
@@ -319,6 +426,15 @@ int connectUser() {
         }
     }
     }
+    
+    
+    else
+    {
+        printf("Sorry I didn't understand your answer\n");
+        printf("Try again !\n");
+    }
+    
+    
     return 0;
 }
 
@@ -365,3 +481,4 @@ int main(int argc, const char * argv[]) {
 
     return 0;
 }
+
