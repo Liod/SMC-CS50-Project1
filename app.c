@@ -5,6 +5,8 @@
 #include "jansson.h"
 
 #define ACCOUNT_NUM_SIZE 10
+#define SIZE 15
+#define a 5
 int numberOfClients = 0;
 int y = 0;
 int connected = 0;
@@ -22,19 +24,17 @@ int connectUser() {
     char verifyLastName[SIZE];
     char verifyPassword[SIZE];
 
-    printf("Welcome to the Bank App !\n");
-    printf("Do you already have an account ?\n");
-    printf("1 - Yes\n");
-    printf("2 - No\n");
+    printf("Welcome to the Bank App!\n");
+    printf("Do you already have an account? (Yes/no)\n");
     scanf("%s", welcomeAnswer);
     if ( strcmp( welcomeAnswer, "Yes") == 0 )
     {
 
-        printf("What is your first name ?\n");
+        printf("What is your first name?\n");
         scanf("%s", verifyFirstName);
-        printf("What is your last name ?\n");
+        printf("What is your last name?\n");
         scanf("%s", verifyLastName);
-        printf("What is your password ?\n");
+        printf("What is your password?\n");
         scanf("%s", verifyPassword);
         y = 0;
         while ( y < 10) {
@@ -51,11 +51,11 @@ int connectUser() {
     }
     else if ( strcmp( welcomeAnswer, "yes") == 0)
     {
-        printf("What is your first name ?\n");
+        printf("What is your first name?\n");
         scanf("%s", verifyFirstName);
-        printf("What is your last name ?\n");
+        printf("What is your last name?\n");
         scanf("%s", verifyLastName);
-        printf("What is your password ?\n");
+        printf("What is your password?\n");
         scanf("%s", verifyPassword);
         y = 0;
         while ( y < 10) {
@@ -81,22 +81,19 @@ int connectUser() {
         else {
         printf("Let's create an account\n");
         y = y + 1;
-        printf("What is your first name ?\n");
+        printf("What is your first name?\n");
         scanf("%s", userFirstName[y]);
 
-        printf("What is your last name ?\n");
+        printf("What is your last name?\n");
         scanf("%s", userLastName[y]);
 
-        printf("What is your password ?\n");
+        printf("What is your password?\n");
         scanf("%s", userPassword[y]);
 
-        printf("Are these informations correct ?\n");
+        printf("Are these informations correct? (Yes/no)\n");
         printf("First Name: %s\n", userFirstName[y]);
         printf("Last Name: %s\n", userLastName[y]);
         printf("Password: %s\n", userPassword[y]);
-
-        printf("1 - Yes\n");
-        printf("2 - No\n");
         scanf("%s", welcomeAnswer2);
         if ( strcmp( welcomeAnswer2, "Yes") == 0 )
         {
@@ -104,7 +101,7 @@ int connectUser() {
             printf("Your account has been created\n");
             FILE* fichier = NULL;
 
-            fichier = fopen("/Users/Yohan/Desktop/TransGroup06.txt", "r+");
+            fichier = fopen("TransGroup06.txt", "a+");
 
             if (fichier != NULL)
             {
@@ -140,11 +137,11 @@ int connectUser() {
         else if ( strcmp( welcomeAnswer2, "yes") == 0 )
         {
             numberOfClients = numberOfClients + 1;
-            printf("Your account has been created\n");
+            printf("Your account has been created.\n");
 
             FILE* fichier = NULL;
 
-            fichier = fopen("/Users/Yohan/Desktop/TransGroup06.txt", "r+");
+            fichier = fopen("TransGroup06.txt", "a+");
 
             if (fichier != NULL)
             {
@@ -201,22 +198,19 @@ int connectUser() {
         else {
         printf("Let's create an account\n");
         y = y + 1;
-        printf("What is your first name ?\n");
+        printf("What is your first name?\n");
         scanf("%15s", userFirstName[y]);
 
-        printf("What is your last name ?\n");
+        printf("What is your last name?\n");
         scanf("%15s", userLastName[y]);
 
-        printf("What is your password ?\n");
+        printf("What is your password?\n");
         scanf("%s", userPassword[y]);
 
-        printf("Are these informations correct ?\n");
+        printf("Are these informations correct? (Yes/no)\n");
         printf("First Name: %s\n", userFirstName[y]);
         printf("Last Name: %s\n", userLastName[y]);
         printf("Password: %s\n", userPassword[y]);
-
-        printf("1 - Yes\n");
-        printf("2 - No\n");
         scanf("%s", welcomeAnswer2);
         if ( strcmp( welcomeAnswer2, "Yes") == 0 )
         {
@@ -225,7 +219,7 @@ int connectUser() {
 
             FILE* fichier = NULL;
 
-            fichier = fopen("/Users/Yohan/Desktop/TransGroup06.txt", "r+");
+            fichier = fopen("TransGroup06.txt", "a+");
 
             if (fichier != NULL)
             {
@@ -264,7 +258,7 @@ int connectUser() {
             printf("Your account has been created\n");
             FILE* fichier = NULL;
 
-            fichier = fopen("/Users/Yohan/Desktop/TransGroup06.txt", "r+");
+            fichier = fopen("TransGroup06.txt", "a+");
 
             if (fichier != NULL)
             {
@@ -356,8 +350,8 @@ int main(int argc, const char * argv[]) {
     }
 
     return 0;
-    */
 }
+*/
 int helpmenu() {
   printf("Banking v0\n");
   printf("---------------------- Welcome %s %s ------------------------\n", userFirstName[y], userLastName[y]);
@@ -409,10 +403,6 @@ int balance(char * accountNumber) {
 	  printf(bal);
   return 0;
 }
-int fetchjson(char * accountNumer) {
-  json_error_t jsonerror;
-  void userdata = json_loads("userdata.json", 0, &jsonerror);
-}
 /*
 int withdraw(char* accountNum[ACCOUNT_NUM_SIZE], int amount) {
   if(accountExists(accountNum) == "true") {
@@ -432,6 +422,7 @@ int wire(char* originAcc[ACCOUNT_NUM_SIZE], char* destAcc[ACCOUNT_NUM_SIZE], int
 }
 int main() {
   char menuselection[100];
+  connectUser();
   helpmenu();
   while(1) {
     char menuselection[20];
@@ -468,9 +459,6 @@ int main() {
 	}
 	else if(strcmp("createFile", menuselection) == 0) {
 		createFile();
-	}
-	else {
-		printf("Unknown command.");
 	}
   }
 }
