@@ -450,7 +450,7 @@ int displayMenu() {
     printf("transfer - Transfer funds from your account to another account.\n");
     printf("charge\t - Charge a price to your account.\n");
     printf("wire\t - Wire funds from one account to another one.\n");
-    printf("exit\t - Exit your account.\n");
+    printf("close\t - Close your account.\n");
 
     return 0;
 }
@@ -466,16 +466,21 @@ int main(int argc, const char * argv[]) {
              printf("You are connected\n");
              displayMenu();
              scanf("%s", menuAnswer);
-             if ( strcmp( menuAnswer, "Exit") == 0 )
+             if ( strcmp( menuAnswer, "Close") == 0 )
              {
                  connected = 0;
                  printf("Your are disconnected !\n");
              }
-             else if ( strcmp( menuAnswer, "exit") == 0 )
+             else if ( strcmp( menuAnswer, "close") == 0 )
              {
                  connected = 0;
                  printf("Your are disconnected !\n");
              }
+            
+            else
+            {
+                 printf("Sorry I didn't understand your answer !\n");
+            }
          }
     }
 
