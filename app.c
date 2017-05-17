@@ -421,7 +421,10 @@ int balance(char * accountNumber) {
 
 int withdraw(char* accountNum[ACCOUNT_NUM_SIZE], int amount) {
 
+	int finalbalance, balanceread;
+
   if(accountExists(accountNum) == "true") {
+<<<<<<< HEAD
 
   FILE *accountFile = fopen_s(&accountFile, accountNum + ".txt", "w+");
 
@@ -443,6 +446,7 @@ int withdraw(char* accountNum[ACCOUNT_NUM_SIZE], int amount) {
   fclose(accountFile)
 
 
+=======
   }
   return 0;
 }
