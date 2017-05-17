@@ -421,28 +421,28 @@ int balance(char * accountNumber) {
 
 
 int withdraw(char* accountNum[ACCOUNT_NUM_SIZE], int amount) {
-
-  if(accountExists(accountNum) == "true") {
-  
-  FILE *accountFile = fopen_s(&accountFile, accountNum + ".txt", "w+");
 	
-
-  printf("Hello %s%s, your current balance is:", &userFirstName[y], &userLastName[y]);
-  
-	long length;
-	char * accountline = accountExists(accountNumber);
-	char * findBalIdentifier = '$';
-	char * bal;
-	  bal = strchr(accountline, findBalIdentifier);
-	  
+	int finalbalance, balanceread;
+	
+  if(accountExists(accountNum) == "true") {
+  	  
   printf("now please give us amount for withdrawl");
   
-  scanf("%f", &withdrawamt);
+  gets(amount);
   
-  bal = bal - withdrawamt;
+  printf("now give us account number to proceed");
   
-  fclose(accountFile)
+  gets(accountNum);
   
+  printf("getting balance now...");
+  
+  balance(accountNum);
+
+  balanceread = atoi(bal);
+  
+  finalbalance = balanceread - amount;
+  
+  printf("amounts withdrawn:%i", &amount);
   
   }
   return 0;
