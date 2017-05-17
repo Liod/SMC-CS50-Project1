@@ -499,6 +499,12 @@ int main(int argc, const char * argv[]) {
                  connected = 0;
                  printf("Your are disconnected !\n");
              }
+            
+            else
+            {
+                printf("Sorry I didn't understand your answer !\n");
+            }
+            
          }
     }
 
