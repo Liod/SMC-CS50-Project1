@@ -447,11 +447,56 @@ int withdraw(char* accountNum[ACCOUNT_NUM_SIZE], int amount) {
 
 
 =======
+
+  printf("now please give us amount for withdrawl");
+
+  gets(amount);
+
+  printf("now give us account number to proceed");
+
+  gets(accountNum);
+
+  printf("getting balance now...");
+
+  balance(accountNum);
+
+  balanceread = atoi(bal);
+
+  finalbalance = balanceread - amount;
+
+  printf("amounts withdrawn:%i", &amount);
+
+>>>>>>> 424fe21652bf0d322fb3ecbec4094b19fcb68e2f
   }
   return 0;
 }
 */
 int deposit(char* accountNum[ACCOUNT_NUM_SIZE], int amount) {
+	/*
+int deposit(char* accountNum[ACCOUNT_NUM_SIZE], int amount) {
+
+	int finalbalance, balanceread;
+
+  if(accountExists(accountNum) == "true") {
+
+  printf("now please give us amount for withdrawl");
+
+  gets(amount);
+
+  printf("now give us account number to proceed");
+
+  gets(accountNum);
+
+  printf("getting balance now...");
+
+  balance(accountNum);
+
+  balanceread = atoi(bal);
+
+  finalbalance = balanceread + amount;
+
+  printf("amounts withdrawn:%i", &amount);
+  */
   return 0;
 }
 int wire(char* originAcc[ACCOUNT_NUM_SIZE], char* destAcc[ACCOUNT_NUM_SIZE], int amount) {
