@@ -1,0 +1,7 @@
+1234567890-0
+Hunter
+Nakagawa
+200
+
+withdraw:60
+deposit:40
