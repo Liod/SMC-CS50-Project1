@@ -196,8 +196,8 @@ int connectUser() {
             numberOfClients = numberOfClients + 1;
             printf("Your account has been created\n");
             
-             userAccountNumber[y][0] = rand() % 9999999 + 1111111;
-            printf("Your account number is: %d\n", userAccountNumber[y][0]);
+           //  userAccountNumber[y][0] = rand() % 9999999 + 1111111;             RandomAccountNumber creation
+           // printf("Your account number is: %d\n", userAccountNumber[y][0]);
             
             FILE* fichier = NULL;
             
@@ -240,8 +240,8 @@ int connectUser() {
             printf("Your account has been created\n");
             
             
-            userAccountNumber[y][0] = rand() % 9999999 + 1111111;
-            printf("Your account number is: %d\n", userAccountNumber[y][0]);
+            // userAccountNumber[y][0] = rand() % 9999999 + 1111111;          Random Account Number creation
+            // printf("Your account number is: %d\n", userAccountNumber[y][0]);
             
             
             FILE* fichier = NULL;
@@ -352,8 +352,8 @@ int connectUser() {
             printf("Your account has been created\n");
             
             
-            userAccountNumber[y][0] = rand() % 9999999 + 1111111;
-            printf("Your account number is: %d\n", userAccountNumber[y][0]);
+            // userAccountNumber[y][0] = rand() % 9999999 + 1111111;             Random Account Number creation
+            // printf("Your account number is: %d\n", userAccountNumber[y][0]);
             
             
             FILE* fichier = NULL;
@@ -397,8 +397,8 @@ int connectUser() {
             printf("Your account has been created\n");
             
             
-            userAccountNumber[y][0] = rand() % 9999999 + 1111111;
-            printf("Your account number is: %d\n", userAccountNumber[y][0]);
+            // userAccountNumber[y][0] = rand() % 9999999 + 1111111;           Random Account Number creation
+            // printf("Your account number is: %d\n", userAccountNumber[y][0]);
             
             
             FILE* fichier = NULL;
