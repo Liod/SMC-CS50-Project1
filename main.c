@@ -9,9 +9,11 @@
 #include <ctype.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 #define SIZE 15
 #define a 5
+
 
 int numberOfClients = 0;
 int y = 0;
@@ -19,6 +21,7 @@ int connected = 0;
 char userFirstName[a][SIZE];
 char userLastName[a][20];
 char userPassword[a][SIZE];
+int userAccountNumber[a][SIZE];
 char menuAnswer[SIZE];
 char *ptr_menuAnswer = menuAnswer;
 
@@ -192,6 +195,10 @@ int connectUser() {
         {
             numberOfClients = numberOfClients + 1;
             printf("Your account has been created\n");
+            
+             userAccountNumber[y][0] = rand() % 9999999 + 1111111;
+            printf("Your account number is: %d\n", userAccountNumber[y][0]);
+            
             FILE* fichier = NULL;
             
             fichier = fopen("/Users/Yohan/Desktop/TransGroup06.txt", "r+");
@@ -231,6 +238,11 @@ int connectUser() {
         {
             numberOfClients = numberOfClients + 1;
             printf("Your account has been created\n");
+            
+            
+            userAccountNumber[y][0] = rand() % 9999999 + 1111111;
+            printf("Your account number is: %d\n", userAccountNumber[y][0]);
+            
             
             FILE* fichier = NULL;
             
@@ -339,6 +351,11 @@ int connectUser() {
             numberOfClients = numberOfClients + 1;
             printf("Your account has been created\n");
             
+            
+            userAccountNumber[y][0] = rand() % 9999999 + 1111111;
+            printf("Your account number is: %d\n", userAccountNumber[y][0]);
+            
+            
             FILE* fichier = NULL;
             
             fichier = fopen("/Users/Yohan/Desktop/TransGroup06.txt", "r+");
@@ -378,6 +395,12 @@ int connectUser() {
         {
             numberOfClients = numberOfClients + 1;
             printf("Your account has been created\n");
+            
+            
+            userAccountNumber[y][0] = rand() % 9999999 + 1111111;
+            printf("Your account number is: %d\n", userAccountNumber[y][0]);
+            
+            
             FILE* fichier = NULL;
             
             fichier = fopen("/Users/Yohan/Desktop/TransGroup06.txt", "r+");
@@ -476,14 +499,10 @@ int main(int argc, const char * argv[]) {
                  connected = 0;
                  printf("Your are disconnected !\n");
              }
-            
-            else
-            {
-                 printf("Sorry I didn't understand your answer !\n");
-            }
          }
     }
 
     return 0;
 }
+
 
