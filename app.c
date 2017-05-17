@@ -424,29 +424,6 @@ int withdraw(char* accountNum[ACCOUNT_NUM_SIZE], int amount) {
 	int finalbalance, balanceread;
 
   if(accountExists(accountNum) == "true") {
-<<<<<<< HEAD
-
-  FILE *accountFile = fopen_s(&accountFile, accountNum + ".txt", "w+");
-
-
-  printf("Hello %s%s, your current balance is:", &userFirstName[y], &userLastName[y]);
-
-	long length;
-	char * accountline = accountExists(accountNumber);
-	char * findBalIdentifier = '$';
-	char * bal;
-	  bal = strchr(accountline, findBalIdentifier);
-
-  printf("now please give us amount for withdrawl");
-
-  scanf("%f", &withdrawamt);
-
-  bal = bal - withdrawamt;
-
-  fclose(accountFile)
-
-
-=======
 
   printf("now please give us amount for withdrawl");
 
@@ -466,7 +443,6 @@ int withdraw(char* accountNum[ACCOUNT_NUM_SIZE], int amount) {
 
   printf("amounts withdrawn:%i", &amount);
 
->>>>>>> 424fe21652bf0d322fb3ecbec4094b19fcb68e2f
   }
   return 0;
 }
@@ -496,6 +472,12 @@ int deposit(char* accountNum[ACCOUNT_NUM_SIZE], int amount) {
   finalbalance = balanceread + amount;
 
   printf("amounts withdrawn:%i", &amount);
+
+  FILE *applyDeposit = fopen_s(&applyDeposit, "Tempvalue.txt", "w+");
+
+  
+  fclose(applyDeposit);
+  
   */
   return 0;
 }
