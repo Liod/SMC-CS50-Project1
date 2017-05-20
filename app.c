@@ -19,6 +19,24 @@ char userPassword[a][SIZE];
 char menuAnswer[SIZE];
 char *ptr_menuAnswer = menuAnswer;
 
+
+int usingTempFile() {
+    char buf[0x100];
+    snprintf(buf, sizeof(buf), "/temp/%d.txt", userAccountNumber[y][0]);
+    
+    FILE* file = fopen(buf, "w+");
+     
+    if (file != NULL)
+    {
+        fprintf(file, "%s_%s_%s\n", userFirstName[y], userLastName[y], userBalance[y]);
+     
+        fclose(file);
+    }
+    return 0;
+}
+
+
+
 int accountNumGen() {
   int lengthOfNum = 10;
   srand(time(NULL));
