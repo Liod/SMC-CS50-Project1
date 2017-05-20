@@ -519,7 +519,8 @@ int main() {
       balance(accountNum);
     }
 	  else if(strcmp("withdraw", menuselection) == 0) {
-      printf("still gotta do this lol\n");
+      // Should use the account number for the session.
+      withdraw(userAccountNumber[y]);
     }
 	  else if(strcmp("deposit", menuselection) == 0) {
       int totalDeposit = 0;
