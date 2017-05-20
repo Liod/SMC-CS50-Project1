@@ -27,13 +27,14 @@ char userBalance[a][SIZE];
 int userAccountNumber[a][SIZE];
 char menuAnswer[SIZE];
 char *ptr_menuAnswer = menuAnswer;
+int *ptr_userAccountNumber = &userAccountNumber[a][SIZE];
 
 int usingTempFile() {
+    char buf[0x100];
+    snprintf(buf, sizeof(buf), "/Users/Yohan/Desktop/%d.txt", userAccountNumber[y][0]);
     
+    FILE* file = fopen(buf, "w+");
     
-    FILE* file = NULL;
-    
-    file = fopen("/Users/Yohan/Desktop/TransGroup06.txt", "r+");
     
     if (file != NULL)
     {
@@ -46,11 +47,6 @@ int usingTempFile() {
     
     return 0;
 }
-
-
-
-
-
 
 
 int connectUser() {
