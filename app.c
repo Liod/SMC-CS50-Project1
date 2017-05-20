@@ -18,14 +18,10 @@ char userLastName[a][SIZE];
 char userPassword[a][SIZE];
 char menuAnswer[SIZE];
 char *ptr_menuAnswer = menuAnswer;
-
-
 int usingTempFile() {
     char buf[0x100];
     snprintf(buf, sizeof(buf), "/temp/%d.txt", userAccountNumber[y][0]);
-
     FILE* file = fopen(buf, "w+");
-
     if (file != NULL)
     {
         fprintf(file, "%s_%s_%s\n", userFirstName[y], userLastName[y], userBalance[y]);
@@ -34,23 +30,17 @@ int usingTempFile() {
     }
     return 0;
 }
-
-
 int applyTempChanges() {
     char buf[0x100];
     snprintf(buf, sizeof(buf), "/temp/%d.txt", userAccountNumber[y][0]);
-
     FILE* file = fopen(buf, "w+");
-
     if (file != NULL)
     {
         fprintf(file, "%s_%s_%s\n", userFirstName[y], userLastName[y], userBalance[y]);
-
         fclose(file);
     }
     return 0;
 }
-
 int accountNumGen() {
   int lengthOfNum = 10;
   srand(time(NULL));
@@ -62,21 +52,17 @@ int accountNumGen() {
   printf(accountNumber);
   return 0;
 }
-
 int connectUser() {
-
     char welcomeAnswer[SIZE];
     char welcomeAnswer2[SIZE];
     char verifyFirstName[SIZE];
     char verifyLastName[SIZE];
     char verifyPassword[SIZE];
-
     printf("Welcome to the Bank App!\n");
     printf("Do you already have an account? (Yes/no)\n");
     scanf("%s", welcomeAnswer);
     if ( strcmp( welcomeAnswer, "Yes") == 0 )
     {
-
         printf("What is your first name?\n");
         scanf("%s", verifyFirstName);
         printf("What is your last name?\n");
@@ -117,26 +103,21 @@ int connectUser() {
             }
         }
     }
-
     else if ( strcmp( welcomeAnswer, "No") == 0)
     {
         if ( numberOfClients >= 5)
         {
             printf("We can't have more than 5 clients, sorry.\n");
         }
-
         else {
         printf("Let's create an account\n");
         y = y + 1;
         printf("What is your first name?\n");
         scanf("%s", userFirstName[y]);
-
         printf("What is your last name?\n");
         scanf("%s", userLastName[y]);
-
         printf("What is your password?\n");
         scanf("%s", userPassword[y]);
-
         printf("Is this information correct? (Yes/no)\n");
         printf("First Name: %s\n", userFirstName[y]);
         printf("Last Name: %s\n", userLastName[y]);
@@ -147,9 +128,7 @@ int connectUser() {
             numberOfClients = numberOfClients + 1;
             printf("Your account has been created\n");
             FILE* fichier = NULL;
-
             fichier = fopen("TransGroup06.txt", "a+");
-
             if (fichier != NULL)
             {
                 unsigned long longueurLastName = 0;
@@ -180,16 +159,12 @@ int connectUser() {
             connected = 1;
             return connected;
         }
-
         else if ( strcmp( welcomeAnswer2, "yes") == 0 )
         {
             numberOfClients = numberOfClients + 1;
             printf("Your account has been created.\n");
-
             FILE* fichier = NULL;
-
             fichier = fopen("TransGroup06.txt", "a+");
-
             if (fichier != NULL)
             {
                 unsigned long longueurLastName = 0;
@@ -216,18 +191,14 @@ int connectUser() {
                 fprintf(fichier, " 1647389-1      | %s     \n", userPassword[y]);
                 fclose(fichier); // On ferme le fichier qui a été ouvert
             }
-
             connected = 1;
             return connected;
-
         }
-
         else if ( strcmp( welcomeAnswer2, "No") == 0 )
         {
             printf("Let's try again\n");
             return 0;
         }
-
         else if ( strcmp( welcomeAnswer2, "no") == 0 )
         {
             printf("Let's try again\n");
@@ -241,19 +212,15 @@ int connectUser() {
         {
             printf("We can't have more than 5 clients, sorry.\n");
         }
-
         else {
         printf("Let's create an account\n");
         y = y + 1;
         printf("What is your first name?\n");
         scanf("%15s", userFirstName[y]);
-
         printf("What is your last name?\n");
         scanf("%15s", userLastName[y]);
-
         printf("What is your password?\n");
         scanf("%s", userPassword[y]);
-
         printf("Is this information correct? (Yes/no)\n");
         printf("First Name: %s\n", userFirstName[y]);
         printf("Last Name: %s\n", userLastName[y]);
@@ -263,11 +230,8 @@ int connectUser() {
         {
             numberOfClients = numberOfClients + 1;
             printf("Your account has been created.\n");
-
             FILE* fichier = NULL;
-
             fichier = fopen("TransGroup06.txt", "a+");
-
             if (fichier != NULL)
             {
                 unsigned long longueurLastName = 0;
@@ -294,7 +258,6 @@ int connectUser() {
                 fprintf(fichier, " 1647389-1      | %s     \n", userPassword[y]);
                 fclose(fichier); // On ferme le fichier qui a été ouvert
             }
-
             connected = 1;
             return connected;
         }
@@ -304,9 +267,7 @@ int connectUser() {
             numberOfClients = numberOfClients + 1;
             printf("Your account has been created\n");
             FILE* fichier = NULL;
-
             fichier = fopen("TransGroup06.txt", "a+");
-
             if (fichier != NULL)
             {
                 unsigned long longueurLastName = 0;
@@ -337,13 +298,11 @@ int connectUser() {
             connected = 1;
             return connected;
         }
-
         else if ( strcmp( welcomeAnswer2, "No") == 0 )
         {
             printf("Let's try again\n");
             return 0;
         }
-
         else if ( strcmp( welcomeAnswer2, "no") == 0 )
         {
             printf("Let's try again\n");
@@ -441,7 +400,6 @@ int accountExists(char *accountNum) {
 	}
    	return(0);
 }
-
 int balance(char * accountNumber) {
     long length;
     char * accountline = accountExists(accountNumber);
@@ -475,12 +433,12 @@ int withdraw(char* accountNum[ACCOUNT_NUM_SIZE], int amount) {
     finalbalance = balanceread - amount;
     printf("Withdrew %i from your account.", &amount);
     FILE *applyWithdraw = fopen( tempfilewdrw, "w");
-    sprintf(tempfilewdrw, "%c.txt", accountNum)
+    sprintf(tempfilewdrw, "%c.txt", accountNum);
     char tempWdrw[30];
     char underbar[5] = "_";
-    strcat(tempWdrw, LastName);
+    strcat(tempWdrw, userLastName[y]);
     strcat(tempWdrw, underbar);
-    strcat(tempWdrw, FirstName);
+    strcat(tempWdrw, userFirstName[y]);
     strcat(tempWdrw, underbar);
     strcat(tempWdrw, finalbalance_char1);
     char finalbalance_char1 = finalbalance + '0'; // converting int to char
@@ -499,7 +457,7 @@ int deposit(char* accountNum[ACCOUNT_NUM_SIZE], int amount) {
     finalbalance = balanceread + amount;
     printf("Depositing %i into your account...", &amount);
     FILE *applyDeposit = fopen( tempfileDpsit, "w");
-    sprintf(tempfileDpsit, "%c.txt", accountNum)
+    sprintf(tempfileDpsit, "%c.txt", accountNum);
     char tempDpsit[30];
     char finalbalance_char2 = finalbalance + '0'; // converting int to char
     /*char underbar[5] = "_";*/
@@ -512,6 +470,7 @@ int deposit(char* accountNum[ACCOUNT_NUM_SIZE], int amount) {
     fclose(applyDeposit);
     return 0;
   }
+}
 int wire(char* originAcc[ACCOUNT_NUM_SIZE], char* destAcc[ACCOUNT_NUM_SIZE], int amount) {
   withdraw(originAcc, amount);
   deposit(destAcc, amount);
@@ -560,9 +519,7 @@ int main() {
 	  }
     else if(strcmp("exit", menuselection) == 0) {
       printf("Thank you for using this program, saving changes...");
-
       applyTempChanges();
-
       printf("Goodbye!");
       exit(0);
     }
