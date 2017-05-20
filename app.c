@@ -465,58 +465,30 @@ int balance(char * accountNumber) {
     printf("%s", bal);
     return 0;
 }
-
-
-
 int withdraw(char* accountNum[ACCOUNT_NUM_SIZE], int amount) {
-
 	int finalbalance, balanceread;
-
   if(accountExists(accountNum) == "true") {
-
-  printf("now please give us amount for withdrawl");
-
-  gets(amount);
-
-  printf("now give us account number to proceed");
-
-  gets(accountNum);
-
-  printf("getting balance now...");
-
-  balance(accountNum);
-
-  balanceread = atoi(bal);
-
-  finalbalance = balanceread - amount;
-
-  printf("amounts withdrawn:%i", &amount);
-
-  FILE *applyWithdraw;
-
-  sprintf(tempfilewdrw, "%c.txt", accountNum)
-
-  applyWithdraw = fopen_s( tempfilewdrw, "w");
-
-  Char tempWdrw[30];
-
-  char underbar[5] = "_";
-
-  strcat(tempWdrw, LastName);
-  strcat(tempWdrw, underbar);
-  strcat(tempWdrw, FirstName);
-  strcat(tempWdrw, underbar);
-  strcat(tempWdrw, finalbalance_char1);
-  char finalbalance_char1 = finalbalance + '0'; // converting int to char
-
-  fprintf(applyWithdraw, "%c", tempWdrw); // recording file and final balance
-
-
-  fclose(applyWithdraw);
+    printf("\nHow much would you like to withdraw? $");
+    gets(amount);
+    printf("\nWorking...");
+    balanceread = balance(accountNum);
+    finalbalance = balanceread - amount;
+    printf("Withdrew %i from your account.", &amount);
+    FILE *applyWithdraw = fopen( tempfilewdrw, "w");
+    sprintf(tempfilewdrw, "%c.txt", accountNum)
+    char tempWdrw[30];
+    char underbar[5] = "_";
+    strcat(tempWdrw, LastName);
+    strcat(tempWdrw, underbar);
+    strcat(tempWdrw, FirstName);
+    strcat(tempWdrw, underbar);
+    strcat(tempWdrw, finalbalance_char1);
+    char finalbalance_char1 = finalbalance + '0'; // converting int to char
+    fprintf(applyWithdraw, "%c", tempWdrw); // recording file and final balance
+    fclose(applyWithdraw);
   }
   return 0;
 }
-
 int deposit(char* accountNum[ACCOUNT_NUM_SIZE], int amount) {
 	int finalbalance, balanceread;
   if(accountExists(accountNum) == "true") {
@@ -554,22 +526,22 @@ int main() {
     char menuselection[20];
     printf("> ");
     gets(menuselection);
-	char accountNum[20];
+	  char accountNum[20];
     if(strcmp("menu", menuselection) == 0 || strcmp("help", menuselection) == 0) {
       helpmenu();
     }
-	else if(strcmp("account", menuselection) == 0) {
+	  else if(strcmp("account", menuselection) == 0) {
       printf("account();\n");
     }
-	else if(strcmp("balance", menuselection) == 0) {
-		printf("Account number: ");
-		gets(accountNum);
+	  else if(strcmp("balance", menuselection) == 0) {
+		    printf("Account number: ");
+		  gets(accountNum);
       balance(accountNum);
     }
-	else if(strcmp("withdraw", menuselection) == 0) {
+	  else if(strcmp("withdraw", menuselection) == 0) {
       printf("still gotta do this lol\n");
     }
-	else if(strcmp("deposit", menuselection) == 0) {
+	  else if(strcmp("deposit", menuselection) == 0) {
       int totalDeposit = 0;
       printf("Account number: ");
       gets(accountNum);
@@ -577,25 +549,25 @@ int main() {
       gets(totalDeposit);
       deposit(accountNum, totalDeposit);
     }
-	else if(strcmp("testtemp", menuselection) == 0) {
-		printf("Account number: ");
-		char accountselect[20];
-		gets(accountselect);
-		accountExists(accountselect);
-	}
-	else if(strcmp("createFile", menuselection) == 0) {
-		createFile();
-	}
-  else if(strcmp("exit", menuselection) == 0) {
-    printf("Thank you for using this program, saving changes...");
+	  else if(strcmp("testtemp", menuselection) == 0) {
+  		printf("Account number: ");
+  		char accountselect[20];
+  		gets(accountselect);
+  		accountExists(accountselect);
+	  }
+  	else if(strcmp("createFile", menuselection) == 0) {
+  		createFile();
+	  }
+    else if(strcmp("exit", menuselection) == 0) {
+      printf("Thank you for using this program, saving changes...");
 
-    applyTempChanges();
+      applyTempChanges();
 
-    printf("Goodbye!");
-    exit(0);
-  }
-  else if(strcmp("genAccNum", menuselection) == 0) {
-    accountNumGen();
-  }
+      printf("Goodbye!");
+      exit(0);
+    }
+    else if(strcmp("genAccNum", menuselection) == 0) {
+      accountNumGen();
+    }
   }
 }
