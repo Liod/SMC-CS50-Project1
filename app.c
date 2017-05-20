@@ -459,7 +459,10 @@ int withdraw(char* accountNum[ACCOUNT_NUM_SIZE], int amount) {
   strcat(tempWdrw, FirstName);
   strcat(tempWdrw, underbar);
   strcat(tempWdrw, finalbalance_char1);
-  
+  char finalbalance_char1 = finalbalance + '0'; // converting int to char
+
+  fprintf(applyWithdraw, "%c", tempWdrw); // recording file and final balance
+
 
   fclose(applyWithdraw);
   }
@@ -498,9 +501,9 @@ int deposit(char* accountNum[ACCOUNT_NUM_SIZE], int amount) {
   applyDeposit = fopen_s( tempfileDpsit, "w");
 
   Char tempDpsit[30];
+  char finalbalance_char2 = finalbalance + '0'; // converting int to char
   
   char underbar[5] = "_";
-  
   
   strcat(tempDpsit, LastName);
   strcat(tempDpsit, underbar);
@@ -508,7 +511,8 @@ int deposit(char* accountNum[ACCOUNT_NUM_SIZE], int amount) {
   strcat(tempDpsit, underbar);
   strcat(tempDpsit, finalbalance_char2);
   
-
+  fprintf(applyDeposit, "%c", tempDpsit); // recording file and final balance
+   
   fclose(applyDeposit);
   
   */
