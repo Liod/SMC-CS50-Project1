@@ -443,15 +443,32 @@ int withdraw(char* accountNum[ACCOUNT_NUM_SIZE], int amount) {
   finalbalance = balanceread - amount;
 
   printf("amounts withdrawn:%i", &amount);
+  
+  FILE *applyWithdraw;
 
+  sprintf(tempfilewdrw, "%c.txt", accountNum)
+
+  applyWithdraw = fopen_s( tempfilewdrw, "w");
+
+  Char tempWdrw[30];
+  
+  char underbar[5] = "_";
+  
+  strcat(tempWdrw, LastName);
+  strcat(tempWdrw, underbar);
+  strcat(tempWdrw, FirstName);
+  strcat(tempWdrw, underbar);
+  strcat(tempWdrw, finalbalance_char1);
+  
+
+  fclose(applyWithdraw);
   }
   return 0;
 }
 */
 int deposit(char* accountNum[ACCOUNT_NUM_SIZE], int amount) {
 	/*
-int deposit(char* accountNum[ACCOUNT_NUM_SIZE], int amount) {
-
+	
 	int finalbalance, balanceread;
 
   if(accountExists(accountNum) == "true") {
@@ -472,26 +489,27 @@ int deposit(char* accountNum[ACCOUNT_NUM_SIZE], int amount) {
 
   finalbalance = balanceread + amount;
 
-  printf("amounts withdrawn:%i", &amount);
+  printf("amounts depositing:%i", &amount);
   
-  FILE *applyWithdraw;
+  FILE *applyDeposit;
 
-  sprintf(tempfilewdrw, "%c.txt", accountNum)
+  sprintf(tempfileDpsit, "%c.txt", accountNum)
 
-  applyWithdraw = fopen_s( tempfilewdrw, "w");
+  applyDeposit = fopen_s( tempfileDpsit, "w");
 
-  Char tempWdrw[30];
+  Char tempDpsit[30];
   
   char underbar[5] = "_";
   
-  strcat(tempWdrw, LastName);
-  strcat(tempWdrw, underbar);
-  strcat(tempWdrw, FirstName);
-  strcat(tempWdrw, underbar);
-  strcat(tempWdrw, accountNum);
+  
+  strcat(tempDpsit, LastName);
+  strcat(tempDpsit, underbar);
+  strcat(tempDpsit, FirstName);
+  strcat(tempDpsit, underbar);
+  strcat(tempDpsit, finalbalance_char2);
   
 
-  fclose(applyWithdraw);
+  fclose(applyDeposit);
   
   */
   return 0;
