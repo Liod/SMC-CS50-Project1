@@ -104,6 +104,7 @@ int connectUser() {
         {
             numberOfClients = numberOfClients + 1;
             printf("Your account has been created\n");
+            /*
             FILE* fichier = NULL;
             fichier = fopen("TransGroup06.txt", "a+");
             if (fichier != NULL)
@@ -132,7 +133,7 @@ int connectUser() {
                 fprintf(fichier, " 1647389-1      | %s     \n", userPassword[y]);
                 fclose(fichier); // On ferme le fichier qui a été ouvert
             }
-
+            */
             connected = 1;
             return connected;
         }
@@ -140,6 +141,7 @@ int connectUser() {
         {
             numberOfClients = numberOfClients + 1;
             printf("Your account has been created.\n");
+            /*
             FILE* fichier = NULL;
             fichier = fopen("TransGroup06.txt", "a+");
             if (fichier != NULL)
@@ -168,6 +170,7 @@ int connectUser() {
                 fprintf(fichier, " 1647389-1      | %s     \n", userPassword[y]);
                 fclose(fichier); // On ferme le fichier qui a été ouvert
             }
+            */
             connected = 1;
             return connected;
         }
@@ -207,6 +210,7 @@ int connectUser() {
         {
             numberOfClients = numberOfClients + 1;
             printf("Your account has been created.\n");
+            /*
             FILE* fichier = NULL;
             fichier = fopen("TransGroup06.txt", "a+");
             if (fichier != NULL)
@@ -235,6 +239,7 @@ int connectUser() {
                 fprintf(fichier, " 1647389-1      | %s     \n", userPassword[y]);
                 fclose(fichier); // On ferme le fichier qui a été ouvert
             }
+            */
             connected = 1;
             return connected;
         }
@@ -243,6 +248,7 @@ int connectUser() {
         {
             numberOfClients = numberOfClients + 1;
             printf("Your account has been created\n");
+            /*
             FILE* fichier = NULL;
             fichier = fopen("TransGroup06.txt", "a+");
             if (fichier != NULL)
@@ -271,6 +277,7 @@ int connectUser() {
                 fprintf(fichier, " 1647389-1      | %s     \n", userPassword[y]);
                 fclose(fichier); // On ferme le fichier qui a été ouvert
             }
+            */
 
             connected = 1;
             return connected;
@@ -309,29 +316,66 @@ int applyTempChanges() {
         fprintf(file, "%s_%s_%s\n", userFirstName[y], userLastName[y], userBalance[y]);
         fclose(file);
     }
-	char openTmpF[20];
-	char storemainF[40];
-	char storeTmpF[40]; // read tempfile as just 1 line
-	char storeTmpA[3][20]; // 2D Array for storing tokenized storeTmpF data, as [1][20] for storing firstname and [2][20] for storing lastname and [3][30] for storing balance
-	char storeTok[50];
-	char storebalance[20]; // storing balance from tokenized storeTmpA[3][20].
-	char *tokenizer = NULL;
-	char tokenunderbar = "_";
-	int i = 0;
-	sprintf(openTmpF, "%c.txt", accountNum)
-	FILE * readTmpF = fopen_s( openTmpF, "r");
-	fgets(storeTmpF, 40, readTmpF);
-	tokenizer = strtok(storeTmpF, tokenunderbar);
-	for(i = 0; i<3; i++){
-	tokenizer = strtok(NULL, tokenunderbar);
-		storeTmpA[i][20] = tokenizer;
-	}
-	storebalance = storeTmpA[3][20];
-	fclose(readTmpF)
-	FILE * readMainF = fopen_s( "TransGroup06.txt", "r");
-	fclose(readMainF)
-	FILE * applyMainF = fopen_s("TransGroup06.txt", "w+");
-	fclose(applyMainF)
+    char * userbalStr[];
+    int userbal = 0;
+    fgets(*userbalStr, 3, file);
+    userbal = atoi(*userbalStr);
+    /*
+  	char openTmpF[20];
+  	char storemainF[40];
+  	char storeTmpF[40]; // read tempfile as just 1 line
+  	char storeTmpA[3][20]; // 2D Array for storing tokenized storeTmpF data, as [1][20] for storing firstname and [2][20] for storing lastname and [3][30] for storing balance
+  	char storeTok[50];
+  	char storebalance[20]; // storing balance from tokenized storeTmpA[3][20].
+  	char *tokenizer = NULL;
+  	char tokenunderbar = "_";
+  	int i = 0;
+  	sprintf(openTmpF, "%c.txt", accountNum);
+  	FILE * readTmpF = fopen( openTmpF, "r");
+  	fgets(storeTmpF, 40, readTmpF);
+  	tokenizer = strtok(storeTmpF, tokenunderbar);
+  	for(i = 0; i<3; i++){
+  	tokenizer = strtok(NULL, tokenunderbar);
+  		storeTmpA[i][20] = tokenizer;
+  	}
+  	storebalance = storeTmpA[3][20];
+  	fclose(readTmpF);
+  	FILE * readMainF = fopen( "TransGroup06.txt", "r");
+  	fclose(readMainF);
+  	FILE * applyMainF = fopen("TransGroup06.txt", "w+");
+  	fclose(applyMainF);
+    */
+    FILE* fichier = NULL;
+    fichier = fopen("TransGroup06.txt", "a+");
+    if (fichier != NULL)
+    {
+        unsigned long longueurLastName = 0;
+        unsigned long longueurFirstName = 0;
+        longueurLastName = strlen(userLastName[y]);
+        longueurFirstName = strlen(userFirstName[y]);
+        fprintf(fichier, "Last Name      | First Name     | Account Number | Password   | Balance\n");
+        fprintf(fichier, "               |                |                |            |\n");
+        fprintf(fichier, "%s", userLastName[y]);
+        while (longueurLastName < 15)
+        {
+            fprintf(fichier, " ");
+            longueurLastName = longueurLastName + 1;
+        }
+        fprintf(fichier, "|");
+        fprintf(fichier, " ");
+        fprintf(fichier, "%s", userFirstName[y]);
+        while (longueurFirstName < 15)
+        {
+            fprintf(fichier, " ");
+            longueurFirstName = longueurFirstName + 1;
+        }
+        fprintf(fichier, "|");
+        fprintf(fichier, " 1647389-1      | %s     \n", userPassword[y]);
+        fprintf(fichier, "|");
+        fprintf(fichier, " ");
+        fprintf(fichier, "%s", userbal);
+        fclose(fichier); // On ferme le fichier qui a été ouvert
+    }
     return 0;
 }
 /* MERGED
