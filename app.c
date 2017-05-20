@@ -37,7 +37,37 @@ int usingTempFile() {
 
 
 int applyTempChanges() {
-    char buf[0x100];
+    
+	char openTmpF[20];
+//	char storemainF[5][15][40] //3D array for read/store datas from original TransGroup06.txt, [5] for 5 users and [15] for maximum 15 lines of all files, [40] for char space
+	
+	char storemainF[40];
+	char store TmpF[40];
+	char storeTok[50];
+	
+	sprintf(openTmpF, "%c.txt", accountNum)
+	
+	FILE * readTmpF = fopen_s( openTmpF, "r");
+	
+	fgets()
+	
+	fclose(readTmpF)
+	
+	FILE * readMainF = fopen_s( "TransGroup06.txt", "r");
+	
+	
+	
+	
+	
+	
+	fclose(readMainF)
+	
+	FILE * applyMainF = fopen_s("TransGroup06.txt", "w+");
+	
+	
+	fclose(applyMainF)
+	
+/*	char buf[0x100];
     snprintf(buf, sizeof(buf), "/temp/%d.txt", userAccountNumber[y][0]);
 
     FILE* file = fopen(buf, "w+");
@@ -47,7 +77,7 @@ int applyTempChanges() {
         fprintf(file, "%s_%s_%s\n", userFirstName[y], userLastName[y], userBalance[y]);
 
         fclose(file);
-    }
+    */}
     return 0;
 }
 
