@@ -544,6 +544,7 @@ int wire(char* originAcc[ACCOUNT_NUM_SIZE], char* destAcc[ACCOUNT_NUM_SIZE], int
 int main() {
   char menuselection[100];
   connectUser();
+  usingTempFile();
   helpmenu();
   while(1) {
     char menuselection[20];
