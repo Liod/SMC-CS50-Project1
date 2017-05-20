@@ -31,6 +31,7 @@ int usingTempFile() {
     return 0;
 }
 int applyTempChanges() {
+<<<<<<< HEAD
     char buf[0x100];
     snprintf(buf, sizeof(buf), "/temp/%d.txt", userAccountNumber[y][0]);
     FILE* file = fopen(buf, "w+");
@@ -39,6 +40,38 @@ int applyTempChanges() {
         fprintf(file, "%s_%s_%s\n", userFirstName[y], userLastName[y], userBalance[y]);
         fclose(file);
     }
+=======
+    
+	char openTmpF[20];
+	char storemainF[40];
+	char storeTmpF[40]; // read tempfile as just 1 line
+	char storeTmpA[3][20]; // 2D Array for storing tokenized storeTmpF data, as [1][20] for storing firstname and [2][20] for storing lastname and [3][30] for storing balance
+	char storeTok[50];
+	char storebalance[20]; // storing balance from tokenized storeTmpA[3][20].
+	char *tokenizer = NULL;
+	char tokenunderbar = "_";
+	int i = 0;
+	sprintf(openTmpF, "%c.txt", accountNum)
+	FILE * readTmpF = fopen_s( openTmpF, "r");
+	fgets(storeTmpF, 40, readTmpF);
+	tokenizer = strtok(storeTmpF, tokenunderbar);
+	for(i = 0; i<3; i++){
+	tokenizer = strtok(NULL, tokenunderbar);
+		storeTmpA[i][20] = tokenizer;
+	}
+	storebalance = storeTmpA[3][20];
+	fclose(readTmpF)
+	FILE * readMainF = fopen_s( "TransGroup06.txt", "r");
+	
+	
+	
+	
+	
+	fclose(readMainF)
+	
+	FILE * applyMainF = fopen_s("TransGroup06.txt", "w+");
+	fclose(applyMainF)
+>>>>>>> ded2781ae603ebaf1d1270e3508b069c3b100232
     return 0;
 }
 int accountNumGen() {
