@@ -17,13 +17,41 @@
 
 int numberOfClients = 0;
 int y = 0;
+int n = 0;
 int connected = 0;
 char userFirstName[a][SIZE];
+char buffer [50];
 char userLastName[a][20];
 char userPassword[a][SIZE];
+char userBalance[a][SIZE];
 int userAccountNumber[a][SIZE];
 char menuAnswer[SIZE];
 char *ptr_menuAnswer = menuAnswer;
+
+int usingTempFile() {
+    
+    
+    FILE* file = NULL;
+    
+    file = fopen("/Users/Yohan/Desktop/TransGroup06.txt", "r+");
+    
+    if (file != NULL)
+    {
+        printf("%s_%s_%s\n", userFirstName[y], userLastName[y], userBalance[y]);
+        
+    
+    
+        fclose(file);
+    }
+    
+    return 0;
+}
+
+
+
+
+
+
 
 int connectUser() {
    
@@ -196,8 +224,8 @@ int connectUser() {
             numberOfClients = numberOfClients + 1;
             printf("Your account has been created\n");
             
-           //  userAccountNumber[y][0] = rand() % 9999999 + 1111111;             RandomAccountNumber creation
-           // printf("Your account number is: %d\n", userAccountNumber[y][0]);
+             userAccountNumber[y][0] = rand() % 9999999 + 1111111;
+            printf("Your account number is: %d\n", userAccountNumber[y][0]);
             
             FILE* fichier = NULL;
             
@@ -240,8 +268,8 @@ int connectUser() {
             printf("Your account has been created\n");
             
             
-            // userAccountNumber[y][0] = rand() % 9999999 + 1111111;          Random Account Number creation
-            // printf("Your account number is: %d\n", userAccountNumber[y][0]);
+            userAccountNumber[y][0] = rand() % 9999999 + 1111111;
+            printf("Your account number is: %d\n", userAccountNumber[y][0]);
             
             
             FILE* fichier = NULL;
@@ -352,8 +380,8 @@ int connectUser() {
             printf("Your account has been created\n");
             
             
-            // userAccountNumber[y][0] = rand() % 9999999 + 1111111;             Random Account Number creation
-            // printf("Your account number is: %d\n", userAccountNumber[y][0]);
+            userAccountNumber[y][0] = rand() % 9999999 + 1111111;
+            printf("Your account number is: %d\n", userAccountNumber[y][0]);
             
             
             FILE* fichier = NULL;
@@ -397,8 +425,8 @@ int connectUser() {
             printf("Your account has been created\n");
             
             
-            // userAccountNumber[y][0] = rand() % 9999999 + 1111111;           Random Account Number creation
-            // printf("Your account number is: %d\n", userAccountNumber[y][0]);
+            userAccountNumber[y][0] = rand() % 9999999 + 1111111;
+            printf("Your account number is: %d\n", userAccountNumber[y][0]);
             
             
             FILE* fichier = NULL;
@@ -486,29 +514,30 @@ int main(int argc, const char * argv[]) {
          connectUser();
          while (connected == 1)
          {
+             usingTempFile();
              printf("You are connected\n");
              displayMenu();
              scanf("%s", menuAnswer);
              if ( strcmp( menuAnswer, "Close") == 0 )
              {
                  connected = 0;
-                 printf("Your are disconnected !\n");
+                 printf("You are disconnected !\n");
              }
              else if ( strcmp( menuAnswer, "close") == 0 )
              {
                  connected = 0;
-                 printf("Your are disconnected !\n");
+                 printf("You are disconnected !\n");
              }
-            
-            else
+             
+             
+             else
             {
                 printf("Sorry I didn't understand your answer !\n");
             }
-            
+             
+             
          }
     }
 
     return 0;
 }
-
-
