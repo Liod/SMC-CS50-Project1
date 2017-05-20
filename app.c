@@ -441,15 +441,28 @@ int accountExists(char *accountNum) {
 	}
    	return(0);
 }
+
 int balance(char * accountNumber) {
-	long length;
-	char * accountline = accountExists(accountNumber);
-	char * findBalIdentifier = '$';
-	char * bal;
-	  bal = strchr(accountline, findBalIdentifier);
-	  printf(bal);
-  return 0;
+    long length;
+    char * accountline = accountExists(accountNumber);
+    char * findBalIdentifier = '$';
+    char * bal;
+    char buf[0x100];
+    snprintf(buf, sizeof(buf), "/temp/%d.txt", userAccountNumber[y][0]);
+    FILE* file = fopen(buf, "r+");
+    
+    
+    if (file != NULL)
+    {
+        fscanf(file, "%s_%s_%s\n", userFirstName[y], userLastName[y], userBalance[y]);
+    
+        fclose(file);
+    }
+    bal = userBalance[y];
+    printf("%s", bal);
+    return 0;
 }
+
 
 
 int withdraw(char* accountNum[ACCOUNT_NUM_SIZE], int amount) {
