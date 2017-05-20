@@ -510,11 +510,11 @@ int displayMenu() {
 int main(int argc, const char * argv[]) {
     while ( connected == 0)
     {
-
+         
          connectUser();
          while (connected == 1)
          {
-             
+             usingTempFile();
              printf("You are connected\n");
              displayMenu();
              scanf("%s", menuAnswer);
