@@ -23,13 +23,13 @@ char *ptr_menuAnswer = menuAnswer;
 int usingTempFile() {
     char buf[0x100];
     snprintf(buf, sizeof(buf), "/temp/%d.txt", userAccountNumber[y][0]);
-    
+
     FILE* file = fopen(buf, "w+");
-     
+
     if (file != NULL)
     {
         fprintf(file, "%s_%s_%s\n", userFirstName[y], userLastName[y], userBalance[y]);
-     
+
         fclose(file);
     }
     return 0;
@@ -39,13 +39,13 @@ int usingTempFile() {
 int applyTempChanges() {
     char buf[0x100];
     snprintf(buf, sizeof(buf), "/temp/%d.txt", userAccountNumber[y][0]);
-    
+
     FILE* file = fopen(buf, "w+");
-     
+
     if (file != NULL)
     {
         fprintf(file, "%s_%s_%s\n", userFirstName[y], userLastName[y], userBalance[y]);
-     
+
         fclose(file);
     }
     return 0;
@@ -450,14 +450,17 @@ int balance(char * accountNumber) {
     char buf[0x100];
     snprintf(buf, sizeof(buf), "/temp/%d.txt", userAccountNumber[y][0]);
     FILE* file = fopen(buf, "r+");
-    
-    
+
+    /*
     if (file != NULL)
     {
-        fscanf(file, "%s_%s_%s\n", userFirstName[y], userLastName[y], userBalance[y]);
-    
+        if(fscanf(file, "%s_%s_%s\n", userFirstName[y], userLastName[y], userBalance[y]) != 1) {
+          printf("")
+        }
+
         fclose(file);
     }
+    */
     bal = userBalance[y];
     printf("%s", bal);
     return 0;
@@ -488,7 +491,7 @@ int withdraw(char* accountNum[ACCOUNT_NUM_SIZE], int amount) {
   finalbalance = balanceread - amount;
 
   printf("amounts withdrawn:%i", &amount);
-  
+
   FILE *applyWithdraw;
 
   sprintf(tempfilewdrw, "%c.txt", accountNum)
@@ -496,9 +499,9 @@ int withdraw(char* accountNum[ACCOUNT_NUM_SIZE], int amount) {
   applyWithdraw = fopen_s( tempfilewdrw, "w");
 
   Char tempWdrw[30];
-  
+
   char underbar[5] = "_";
-  
+
   strcat(tempWdrw, LastName);
   strcat(tempWdrw, underbar);
   strcat(tempWdrw, FirstName);
@@ -515,52 +518,28 @@ int withdraw(char* accountNum[ACCOUNT_NUM_SIZE], int amount) {
 }
 
 int deposit(char* accountNum[ACCOUNT_NUM_SIZE], int amount) {
-	
 	int finalbalance, balanceread;
-
   if(accountExists(accountNum) == "true") {
-
-  printf("now please give us amount for withdrawl");
-
-  gets(amount);
-
-  printf("now give us account number to proceed");
-
-  gets(accountNum);
-
-  printf("getting balance now...");
-
-  balance(accountNum);
-
-  balanceread = atoi(bal);
-
-  finalbalance = balanceread + amount;
-
-  printf("amounts depositing:%i", &amount);
-  
-  FILE *applyDeposit;
-
-  sprintf(tempfileDpsit, "%c.txt", accountNum)
-
-  applyDeposit = fopen_s( tempfileDpsit, "w");
-
-  Char tempDpsit[30];
-  char finalbalance_char2 = finalbalance + '0'; // converting int to char
-  
-  char underbar[5] = "_";
-  
-  strcat(tempDpsit, LastName);
-  strcat(tempDpsit, underbar);
-  strcat(tempDpsit, FirstName);
-  strcat(tempDpsit, underbar);
-  strcat(tempDpsit, finalbalance_char2);
-  
-  fprintf(applyDeposit, "%c", tempDpsit); // recording file and final balance
-   
-  fclose(applyDeposit);
-  
-  return 0;
-}
+    printf("\nHow much would you like to withdraw? $");
+    gets(amount);
+    printf("\nGetting your balance...");
+    balanceread = balance(accountNum);
+    finalbalance = balanceread + amount;
+    printf("Depositing %i into your account...", &amount);
+    FILE *applyDeposit = fopen( tempfileDpsit, "w");
+    sprintf(tempfileDpsit, "%c.txt", accountNum)
+    char tempDpsit[30];
+    char finalbalance_char2 = finalbalance + '0'; // converting int to char
+    /*char underbar[5] = "_";*/
+    strcat(tempDpsit, LastName);
+    strcat(tempDpsit, "_");
+    strcat(tempDpsit, FirstName);
+    strcat(tempDpsit, "_");
+    strcat(tempDpsit, finalbalance_char2);
+    fprintf(applyDeposit, "%c", tempDpsit); // recording file and final balance
+    fclose(applyDeposit);
+    return 0;
+  }
 int wire(char* originAcc[ACCOUNT_NUM_SIZE], char* destAcc[ACCOUNT_NUM_SIZE], int amount) {
   withdraw(originAcc, amount);
   deposit(destAcc, amount);
@@ -609,9 +588,9 @@ int main() {
 	}
   else if(strcmp("exit", menuselection) == 0) {
     printf("Thank you for using this program, saving changes...");
-    
+
     applyTempChanges();
-    
+
     printf("Goodbye!");
     exit(0);
   }
