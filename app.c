@@ -39,34 +39,25 @@ int usingTempFile() {
 int applyTempChanges() {
     
 	char openTmpF[20];
-//	char storemainF[5][15][40] //3D array for read/store datas from original TransGroup06.txt, [5] for 5 users and [15] for maximum 15 lines of all files, [40] for char space
-	
 	char storemainF[40];
 	char storeTmpF[40]; // read tempfile as just 1 line
 	char storeTmpA[3][20]; // 2D Array for storing tokenized storeTmpF data, as [1][20] for storing firstname and [2][20] for storing lastname and [3][30] for storing balance
-	
 	char storeTok[50];
+	char storebalance[20]; // storing balance from tokenized storeTmpA[3][20].
 	char *tokenizer = NULL;
 	char tokenunderbar = "_";
 	int i = 0;
-	
 	sprintf(openTmpF, "%c.txt", accountNum)
-	
 	FILE * readTmpF = fopen_s( openTmpF, "r");
-	
 	fgets(storeTmpF, 40, readTmpF);
-	
 	tokenizer = strtok(storeTmpF, tokenunderbar);
 	for(i = 0; i<3; i++){
 	tokenizer = strtok(NULL, tokenunderbar);
 		storeTmpA[i][20] = tokenizer;
-	
 	}
-	
+	storebalance = storeTmpA[3][20];
 	fclose(readTmpF)
-	
 	FILE * readMainF = fopen_s( "TransGroup06.txt", "r");
-	
 	
 	
 	
@@ -75,10 +66,7 @@ int applyTempChanges() {
 	fclose(readMainF)
 	
 	FILE * applyMainF = fopen_s("TransGroup06.txt", "w+");
-	
-	
 	fclose(applyMainF)
-	
     return 0;
 }
 
