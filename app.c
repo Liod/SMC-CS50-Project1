@@ -25,13 +25,11 @@ int usingTempFile() {
     if (file != NULL)
     {
         fprintf(file, "%s_%s_%s\n", userFirstName[y], userLastName[y], userBalance[y]);
-
         fclose(file);
     }
     return 0;
 }
 int applyTempChanges() {
-<<<<<<< HEAD
     char buf[0x100];
     snprintf(buf, sizeof(buf), "/temp/%d.txt", userAccountNumber[y][0]);
     FILE* file = fopen(buf, "w+");
@@ -40,8 +38,6 @@ int applyTempChanges() {
         fprintf(file, "%s_%s_%s\n", userFirstName[y], userLastName[y], userBalance[y]);
         fclose(file);
     }
-=======
-    
 	char openTmpF[20];
 	char storemainF[40];
 	char storeTmpF[40]; // read tempfile as just 1 line
@@ -62,16 +58,9 @@ int applyTempChanges() {
 	storebalance = storeTmpA[3][20];
 	fclose(readTmpF)
 	FILE * readMainF = fopen_s( "TransGroup06.txt", "r");
-	
-	
-	
-	
-	
 	fclose(readMainF)
-	
 	FILE * applyMainF = fopen_s("TransGroup06.txt", "w+");
 	fclose(applyMainF)
->>>>>>> ded2781ae603ebaf1d1270e3508b069c3b100232
     return 0;
 }
 int accountNumGen() {
