@@ -36,6 +36,20 @@ int usingTempFile() {
 }
 
 
+int applyTempChanges() {
+    char buf[0x100];
+    snprintf(buf, sizeof(buf), "/temp/%d.txt", userAccountNumber[y][0]);
+    
+    FILE* file = fopen(buf, "w+");
+     
+    if (file != NULL)
+    {
+        fprintf(file, "%s_%s_%s\n", userFirstName[y], userLastName[y], userBalance[y]);
+     
+        fclose(file);
+    }
+    return 0;
+}
 
 int accountNumGen() {
   int lengthOfNum = 10;
@@ -436,7 +450,7 @@ int balance(char * accountNumber) {
 	  printf(bal);
   return 0;
 }
-/*
+
 
 int withdraw(char* accountNum[ACCOUNT_NUM_SIZE], int amount) {
 
@@ -486,9 +500,8 @@ int withdraw(char* accountNum[ACCOUNT_NUM_SIZE], int amount) {
   }
   return 0;
 }
-*/
+
 int deposit(char* accountNum[ACCOUNT_NUM_SIZE], int amount) {
-	/*
 	
 	int finalbalance, balanceread;
 
@@ -533,11 +546,10 @@ int deposit(char* accountNum[ACCOUNT_NUM_SIZE], int amount) {
    
   fclose(applyDeposit);
   
-  */
   return 0;
 }
 int wire(char* originAcc[ACCOUNT_NUM_SIZE], char* destAcc[ACCOUNT_NUM_SIZE], int amount) {
-  //withdraw(originAcc, amount);
+  withdraw(originAcc, amount);
   deposit(destAcc, amount);
   return 0;
 }
@@ -583,6 +595,10 @@ int main() {
 		createFile();
 	}
   else if(strcmp("exit", menuselection) == 0) {
+    printf("Thank you for using this program, saving changes...");
+    
+    applyTempChanges();
+    
     printf("Goodbye!");
     exit(0);
   }
