@@ -37,7 +37,7 @@ int usingTempFile() {
     
     if (file != NULL)
     {
-        printf("%s_%s_%s\n", userFirstName[y], userLastName[y], userBalance[y]);
+        fprintf(file, "%s_%s_%s\n", userFirstName[y], userLastName[y], userBalance[y]);
         
     
     
