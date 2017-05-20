@@ -514,7 +514,7 @@ int main(int argc, const char * argv[]) {
          connectUser();
          while (connected == 1)
          {
-             usingTempFile();
+             
              printf("You are connected\n");
              displayMenu();
              scanf("%s", menuAnswer);
