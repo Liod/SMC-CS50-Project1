@@ -5,6 +5,7 @@
 #include "jansson.h"
 #include <time.h>
 
+#define _CRT_SECURE_NO_WARNINGS
 #define ACCOUNT_NUM_SIZE 10
 #define SIZE 15
 #define a 5
@@ -472,11 +473,25 @@ int deposit(char* accountNum[ACCOUNT_NUM_SIZE], int amount) {
   finalbalance = balanceread + amount;
 
   printf("amounts withdrawn:%i", &amount);
-
-  FILE *applyDeposit = fopen_s(&applyDeposit, "Tempvalue.txt", "w+");
-
   
-  fclose(applyDeposit);
+  FILE *applyWithdraw;
+
+  sprintf(tempfilewdrw, "%c.txt", accountNum)
+
+  applyWithdraw = fopen_s( tempfilewdrw, "w");
+
+  Char tempWdrw[30];
+  
+  char underbar[5] = "_";
+  
+  strcat(tempWdrw, LastName);
+  strcat(tempWdrw, underbar);
+  strcat(tempWdrw, FirstName);
+  strcat(tempWdrw, underbar);
+  strcat(tempWdrw, accountNum);
+  
+
+  fclose(applyWithdraw);
   
   */
   return 0;
