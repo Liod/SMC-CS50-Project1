@@ -1,3 +1,4 @@
+//
 //  main.c
 //  Bank
 //
@@ -24,8 +25,11 @@ char buffer [50];
 char userLastName[a][20];
 char userPassword[a][SIZE];
 char userBalance[a][SIZE];
-int Balance;
+char *ptr_userBalance;
+char balanceArray[a];
+long Balance;
 int depositAmount;
+int withdrawAmount;
 int userAccountNumber[a][SIZE];
 char menuAnswer[SIZE];
 char *ptr_menuAnswer = menuAnswer;
@@ -254,7 +258,7 @@ int connectUser() {
         {
             numberOfClients = numberOfClients + 1;
             printf("Your account has been created\n");
-            strcpy( &userBalance[y][0], "000" );
+            strcpy( &userBalance[y][0], "0" );
             userAccountNumber[y][0] = rand() % 9999999 + 1111111;
             printf("Your account number is: %d\n", userAccountNumber[y][0]);
             
@@ -297,7 +301,7 @@ int connectUser() {
         {
             numberOfClients = numberOfClients + 1;
             printf("Your account has been created\n");
-            strcpy( &userBalance[y][0], "000" );
+            strcpy( &userBalance[y][0], "0" );
             userAccountNumber[y][0] = rand() % 9999999 + 1111111;
             printf("Your account number is: %d\n", userAccountNumber[y][0]);
             
@@ -408,7 +412,7 @@ int connectUser() {
         {
             numberOfClients = numberOfClients + 1;
             printf("Your account has been created\n");
-            strcpy( &userBalance[y][0], "000" );
+            strcpy( &userBalance[y][0], "0" );
             userAccountNumber[y][0] = rand() % 9999999 + 1111111;
             printf("Your account number is: %d\n", userAccountNumber[y][0]);
             
@@ -452,7 +456,7 @@ int connectUser() {
         {
             numberOfClients = numberOfClients + 1;
             printf("Your account has been created\n");
-            strcpy( &userBalance[y][0], "000" );
+            strcpy( &userBalance[y][0], "0" );
             userAccountNumber[y][0] = rand() % 9999999 + 1111111;
             printf("Your account number is: %d\n", userAccountNumber[y][0]);
             
@@ -514,7 +518,7 @@ int connectUser() {
     }
     
     
-    return 0;
+    return y;
 }
 
 
@@ -579,12 +583,12 @@ int main(int argc, const char * argv[]) {
                  printf("How much would you like to deposit ?\n");
                  scanf("%d", &depositAmount);
                  
-                 int Balance = (userBalance[y][0] - '0');
+                 Balance = strtol(userBalance[y], &ptr_userBalance, 10);
                  Balance = Balance + depositAmount;
                  
-                 sprintf (&userBalance[y][0], "%d", Balance);
-                 
+                 sprintf (userBalance[y], "%ld", Balance);
                  printf("Success ! Your new Balance is: %s$\n", userBalance[y]);
+                 Balance = 0;
              }
              
              
@@ -593,13 +597,44 @@ int main(int argc, const char * argv[]) {
                  printf("How much would you like to deposit ?\n");
                  scanf("%d", &depositAmount);
                  
-                 int Balance = (userBalance[y][0] - '0')+(userBalance[y][1] - '0')+(userBalance[y][2] - '0');
+                 Balance = strtol(userBalance[y], &ptr_userBalance, 10);
                  Balance = Balance + depositAmount;
                  
-                 sprintf (&userBalance[y][0], "%d", Balance);
-                 
+                 sprintf (userBalance[y], "%ld", Balance);
                  printf("Success ! Your new Balance is: %s$\n", userBalance[y]);
+                 Balance = 0;
              }
+             
+             
+             else if ( strcmp( menuAnswer, "Withdraw") == 0 )
+             {
+                 printf("How much would you like to withdraw ?\n");
+                 scanf("%d", &withdrawAmount);
+                 
+                 Balance = strtol(userBalance[y], &ptr_userBalance, 10);
+                 Balance = Balance - withdrawAmount;
+                 
+                 sprintf (userBalance[y], "%ld", Balance);
+                 printf("Success ! Your new Balance is: %s$\n", userBalance[y]);
+                 Balance = 0;
+             }
+             
+             
+             else if ( strcmp( menuAnswer, "withdraw") == 0 )
+             {
+                 printf("How much would you like to withdraw ?\n");
+                 scanf("%d", &withdrawAmount);
+                 
+                 Balance = strtol(userBalance[y], &ptr_userBalance, 10);
+                 Balance = Balance - withdrawAmount;
+                 
+                 sprintf (userBalance[y], "%ld", Balance);
+                 printf("Success ! Your new Balance is: %s$\n", userBalance[y]);
+                 Balance = 0;
+             }
+             
+             
+             
              
              
              else
@@ -613,4 +648,5 @@ int main(int argc, const char * argv[]) {
 
     return 0;
 }
+
 
