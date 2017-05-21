@@ -1,4 +1,3 @@
-//
 //  main.c
 //  Bank
 //
@@ -16,6 +15,7 @@
 
 
 int numberOfClients = 0;
+int x = 0;
 int y = 0;
 int n = 0;
 int connected = 0;
@@ -24,29 +24,60 @@ char buffer [50];
 char userLastName[a][20];
 char userPassword[a][SIZE];
 char userBalance[a][SIZE];
+int Balance;
+int depositAmount;
 int userAccountNumber[a][SIZE];
 char menuAnswer[SIZE];
 char *ptr_menuAnswer = menuAnswer;
 int *ptr_userAccountNumber = &userAccountNumber[a][SIZE];
 
-int usingTempFile() {
-    char buf[0x100];
-    snprintf(buf, sizeof(buf), "/Users/Yohan/Desktop/%d.txt", userAccountNumber[y][0]);
-    
-    FILE* file = fopen(buf, "w+");
-    
-    
-    if (file != NULL)
-    {
-        fprintf(file, "%s_%s_%s\n", userFirstName[y], userLastName[y], userBalance[y]);
-        
-    
-    
-        fclose(file);
-    }
-    
-    return 0;
-}
+// int usingTempFile() {
+//    char buf[0x100];
+//    snprintf(buf, sizeof(buf), "/Users/Yohan/Desktop/%d.txt", userAccountNumber[y][0]);
+//
+//    FILE* file = fopen(buf, "w+");
+//
+//
+//    if (file != NULL)
+//    {
+//        fprintf(file, "%s_%s_%s\n", userFirstName[y], userLastName[y], userBalance[y]);
+//
+//
+//
+//        fclose(file);
+//    }
+//
+//    return 0;
+// }
+
+
+
+
+// int balance(char * accountNumber) {
+//    long length;
+//    char * accountline = accountExists(accountNumber);
+//    char * findBalIdentifier = '$';
+//    char * bal;
+//    char buf[0x100];
+//    snprintf(buf, sizeof(buf), "/temp/%d.txt", userAccountNumber[y][0]);
+//    FILE* file = fopen(buf, "r+");
+//
+//
+//    if (file != NULL)
+//    {
+//        fscanf(file, "%s_%s_%s\n", userFirstName[y], userLastName[y], userBalance[y]);
+//
+//        fclose(file);
+//   }
+//    bal = userBalance[y];
+//    printf("%s", bal);
+//    return 0;
+//}
+
+
+
+
+
 
 
 int connectUser() {
@@ -164,6 +195,10 @@ int connectUser() {
                 y = y + 1;
             }
         }
+        
+        printf("Sorry, it seems that your account doesn't exist\n");
+        printf("Try Again !\n");
+        
     }
     
     else if ( strcmp( welcomeAnswer, "No") == 0)
@@ -219,8 +254,8 @@ int connectUser() {
         {
             numberOfClients = numberOfClients + 1;
             printf("Your account has been created\n");
-            
-             userAccountNumber[y][0] = rand() % 9999999 + 1111111;
+            strcpy( &userBalance[y][0], "000" );
+            userAccountNumber[y][0] = rand() % 9999999 + 1111111;
             printf("Your account number is: %d\n", userAccountNumber[y][0]);
             
             FILE* fichier = NULL;
@@ -262,8 +297,7 @@ int connectUser() {
         {
             numberOfClients = numberOfClients + 1;
             printf("Your account has been created\n");
-            
-            
+            strcpy( &userBalance[y][0], "000" );
             userAccountNumber[y][0] = rand() % 9999999 + 1111111;
             printf("Your account number is: %d\n", userAccountNumber[y][0]);
             
@@ -374,8 +408,7 @@ int connectUser() {
         {
             numberOfClients = numberOfClients + 1;
             printf("Your account has been created\n");
-            
-            
+            strcpy( &userBalance[y][0], "000" );
             userAccountNumber[y][0] = rand() % 9999999 + 1111111;
             printf("Your account number is: %d\n", userAccountNumber[y][0]);
             
@@ -419,8 +452,7 @@ int connectUser() {
         {
             numberOfClients = numberOfClients + 1;
             printf("Your account has been created\n");
-            
-            
+            strcpy( &userBalance[y][0], "000" );
             userAccountNumber[y][0] = rand() % 9999999 + 1111111;
             printf("Your account number is: %d\n", userAccountNumber[y][0]);
             
@@ -504,13 +536,14 @@ int displayMenu() {
 
 
 int main(int argc, const char * argv[]) {
+    
+    
     while ( connected == 0)
     {
-         
+
          connectUser();
          while (connected == 1)
          {
-             usingTempFile();
              printf("You are connected\n");
              displayMenu();
              scanf("%s", menuAnswer);
@@ -526,6 +559,49 @@ int main(int argc, const char * argv[]) {
              }
              
              
+             else if ( strcmp( menuAnswer, "Balance") == 0 )
+             {
+                 
+                 printf("Your actual balance is: %s", userBalance[y]);
+                 printf("$\n");
+                 
+             }
+             
+             else if ( strcmp( menuAnswer, "balance") == 0 )
+             {
+                 printf("Your actual balance is: %s", userBalance[y]);
+                 printf("$\n");
+             }
+             
+             
+             else if ( strcmp( menuAnswer, "Deposit") == 0 )
+             {
+                 printf("How much would you like to deposit ?\n");
+                 scanf("%d", &depositAmount);
+                 
+                 int Balance = (userBalance[y][0] - '0');
+                 Balance = Balance + depositAmount;
+                 
+                 sprintf (&userBalance[y][0], "%d", Balance);
+                 
+                 printf("Success ! Your new Balance is: %s$\n", userBalance[y]);
+             }
+             
+             
+             else if ( strcmp( menuAnswer, "deposit") == 0 )
+             {
+                 printf("How much would you like to deposit ?\n");
+                 scanf("%d", &depositAmount);
+                 
+                 int Balance = (userBalance[y][0] - '0')+(userBalance[y][1] - '0')+(userBalance[y][2] - '0');
+                 Balance = Balance + depositAmount;
+                 
+                 sprintf (&userBalance[y][0], "%d", Balance);
+                 
+                 printf("Success ! Your new Balance is: %s$\n", userBalance[y]);
+             }
+             
+             
              else
             {
                 printf("Sorry I didn't understand your answer !\n");
@@ -537,3 +613,4 @@ int main(int argc, const char * argv[]) {
 
     return 0;
 }
+
