@@ -37,7 +37,6 @@ int userAccountNumber[a][SIZE];
 char menuAnswer[SIZE];
 char *ptr_menuAnswer = menuAnswer;
 
-
 // int usingTempFile() {
 //    char buf[0x100];
 //    snprintf(buf, sizeof(buf), "/Users/Yohan/Desktop/%d.txt", userAccountNumber[y][0]);
