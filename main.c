@@ -19,6 +19,9 @@ int numberOfClients = 0;
 int x = 0;
 int y = 0;
 int n = 0;
+int transferAccount;
+char transferAccountArray[a][SIZE];
+int transferAmount;
 int connected = 0;
 char userFirstName[a][SIZE];
 char buffer [50];
@@ -33,7 +36,7 @@ int withdrawAmount;
 int userAccountNumber[a][SIZE];
 char menuAnswer[SIZE];
 char *ptr_menuAnswer = menuAnswer;
-int *ptr_userAccountNumber = &userAccountNumber[a][SIZE];
+
 
 // int usingTempFile() {
 //    char buf[0x100];
@@ -518,7 +521,7 @@ int connectUser() {
     }
     
     
-    return y;
+    return 0;
 }
 
 
@@ -541,6 +544,8 @@ int displayMenu() {
 
 int main(int argc, const char * argv[]) {
     
+    int transferAccount = 0;
+    char transferAccountArray[a][SIZE];
     
     while ( connected == 0)
     {
@@ -634,8 +639,79 @@ int main(int argc, const char * argv[]) {
              }
              
              
+             else if ( strcmp( menuAnswer, "Transfer") == 0 )
+             {
+                 printf("What amount do you want to tranfer:\n");
+                 scanf("%d", &transferAmount);
+                 
+                 printf("To what account do you want to transfer your money:\n");
+                 scanf("%d", &transferAccount);
+                 
+                 Balance = strtol(userBalance[y], &ptr_userBalance, 10);
+                 Balance = Balance - transferAmount;
+                 
+                 sprintf (userBalance[y], "%ld", Balance);
+                 printf("Success ! Your new Balance is: %s$\n", userBalance[y]);
+                 Balance = 0;
+                 
+                 char userAccountNumber[a][SIZE];
+                 y = 0;
+                 sprintf (transferAccountArray[y], "%d", transferAccount);
+                 while ( y < 10) {
+                     if ( strcmp( transferAccountArray[y], userAccountNumber[y]) == 0 )
+                     {
+                         Balance = strtol(userBalance[y], &ptr_userBalance, 10);
+                         Balance = Balance + transferAmount;
+                         sprintf (userBalance[y], "%ld", Balance);
+                         Balance = 0;
+                         y = y + 1;
+                     }
+                     else
+                     {
+                         y = y + 1;
+                     }
+                 }
+                 
+                 
+             
+             }
              
              
+             else if ( strcmp( menuAnswer, "transfer") == 0 )
+             {
+                 printf("What amount do you want to tranfer:\n");
+                 scanf("%d", &transferAmount);
+                 
+                 printf("To what account do you want to transfer your money:\n");
+                 scanf("%d", &transferAccount);
+                 
+                 Balance = strtol(userBalance[y], &ptr_userBalance, 10);
+                 Balance = Balance - transferAmount;
+                 
+                 sprintf (userBalance[y], "%ld", Balance);
+                 printf("Success ! Your new Balance is: %s$\n", userBalance[y]);
+                 Balance = 0;
+
+                 char userAccountNumber[a][SIZE];
+                 y = 0;
+                 sprintf (transferAccountArray[y], "%d", transferAccount);
+                 while ( y < 10) {
+                     if ( strcmp( transferAccountArray[y], userAccountNumber[y]) == 0 )
+                     {
+                         Balance = strtol(userBalance[y], &ptr_userBalance, 10);
+                         Balance = Balance + transferAmount;
+                         sprintf (userBalance[y], "%ld", Balance);
+                         Balance = 0;
+                         y = y + 1;
+                     }
+                     else
+                     {
+                         y = y + 1;
+                     }
+                 }
+                 
+                 
+             }
              
              else
             {
