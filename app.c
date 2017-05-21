@@ -2,7 +2,6 @@
 #include <ctype.h>
 #include <stdlib.h>
 #include <string.h>
-#include "jansson.h"
 #include <time.h>
 
 #define _CRT_SECURE_NO_WARNINGS
