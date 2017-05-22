@@ -21,6 +21,7 @@ int y = 0;
 int n = 0;
 int m = 0;
 int z = 0;
+int j = 0;
 int transferAccount;
 char transferAccountArray[a][SIZE];
 int transferAmount;
@@ -678,12 +679,8 @@ int main(int argc, const char * argv[]) {
                  printf("What amount do you want to tranfer:\n");
                  scanf("%d", &transferAmount);
                  
-                 printf("To what account do you want to transfer your money:\n");
+                 printf("To what account do you want to transfer your money ( account number ):\n");
                  scanf("%d", &transferAccount);
-                 
-                 
-                 
-                 
 
                  char userAccountNumber[a][SIZE];
                  
@@ -695,17 +692,20 @@ int main(int argc, const char * argv[]) {
                  while ( z < 10 ) {
                      if ( strcmp( transferAccountArray[z], userAccountNumber[z]) == 0 )
                      {
+                         
                          printf("Success !\n");
                          Balance = strtol(userBalance[y], &ptr_userBalance, 10);
                          Balance = Balance - transferAmount;
                          sprintf (userBalance[y], "%ld", Balance);
-                         Balance = 0;
+                         printf("Your new balance is %s$\n", userBalance[y]);
                          
                          
-                         Balance = strtol(userBalance[y], &ptr_userBalance, 10);
+                        
+                         Balance = strtol(userBalance[z], &ptr_userBalance, 10);
                          Balance = Balance + transferAmount;
                          sprintf (userBalance[z], "%ld", Balance);
-                         Balance = 0;
+                         
+                         
                          z = 11;
                      }
                      else if ( strcmp( transferAccountArray[z], userAccountNumber[z]) != 0 )
@@ -729,3 +729,4 @@ int main(int argc, const char * argv[]) {
 
     return 0;
 }
+
