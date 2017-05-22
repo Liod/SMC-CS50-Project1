@@ -19,6 +19,8 @@ int numberOfClients = 0;
 int x = 0;
 int y = 0;
 int n = 0;
+int m = 0;
+int z = 0;
 int transferAccount;
 char transferAccountArray[a][SIZE];
 int transferAmount;
@@ -36,6 +38,7 @@ int withdrawAmount;
 int userAccountNumber[a][SIZE];
 char menuAnswer[SIZE];
 char *ptr_menuAnswer = menuAnswer;
+
 
 // int usingTempFile() {
 //    char buf[0x100];
@@ -59,26 +62,6 @@ char *ptr_menuAnswer = menuAnswer;
 
 
 
-// int balance(char * accountNumber) {
-//    long length;
-//    char * accountline = accountExists(accountNumber);
-//    char * findBalIdentifier = '$';
-//    char * bal;
-//    char buf[0x100];
-//    snprintf(buf, sizeof(buf), "/temp/%d.txt", userAccountNumber[y][0]);
-//    FILE* file = fopen(buf, "r+");
-//
-//
-//    if (file != NULL)
-//    {
-//        fscanf(file, "%s_%s_%s\n", userFirstName[y], userLastName[y], userBalance[y]);
-//
-//        fclose(file);
-//   }
-//    bal = userBalance[y];
-//    printf("%s", bal);
-//    return 0;
-//}
 
 
 
@@ -261,6 +244,7 @@ int connectUser() {
             numberOfClients = numberOfClients + 1;
             printf("Your account has been created\n");
             strcpy( &userBalance[y][0], "0" );
+            srand( (unsigned int) time(NULL) );
             userAccountNumber[y][0] = rand() % 9999999 + 1111111;
             printf("Your account number is: %d\n", userAccountNumber[y][0]);
             
@@ -304,6 +288,7 @@ int connectUser() {
             numberOfClients = numberOfClients + 1;
             printf("Your account has been created\n");
             strcpy( &userBalance[y][0], "0" );
+            srand( (unsigned int) time(NULL) );
             userAccountNumber[y][0] = rand() % 9999999 + 1111111;
             printf("Your account number is: %d\n", userAccountNumber[y][0]);
             
@@ -415,6 +400,7 @@ int connectUser() {
             numberOfClients = numberOfClients + 1;
             printf("Your account has been created\n");
             strcpy( &userBalance[y][0], "0" );
+            srand( (unsigned int) time(NULL) );
             userAccountNumber[y][0] = rand() % 9999999 + 1111111;
             printf("Your account number is: %d\n", userAccountNumber[y][0]);
             
@@ -459,6 +445,7 @@ int connectUser() {
             numberOfClients = numberOfClients + 1;
             printf("Your account has been created\n");
             strcpy( &userBalance[y][0], "0" );
+            srand( (unsigned int) time(NULL) );
             userAccountNumber[y][0] = rand() % 9999999 + 1111111;
             printf("Your account number is: %d\n", userAccountNumber[y][0]);
             
@@ -617,10 +604,15 @@ int main(int argc, const char * argv[]) {
                  
                  Balance = strtol(userBalance[y], &ptr_userBalance, 10);
                  Balance = Balance - withdrawAmount;
-                 
-                 sprintf (userBalance[y], "%ld", Balance);
-                 printf("Success ! Your new Balance is: %s$\n", userBalance[y]);
-                 Balance = 0;
+                 if ( Balance >= withdrawAmount)
+                 {
+                     sprintf (userBalance[y], "%ld", Balance);
+                     printf("Success ! Your new Balance is: %s$\n", userBalance[y]);
+                     Balance = 0;
+                 }
+                 else {
+                     printf("Sorry you don't have that amount on your account !\n");
+                 }
              }
              
              
@@ -631,10 +623,15 @@ int main(int argc, const char * argv[]) {
                  
                  Balance = strtol(userBalance[y], &ptr_userBalance, 10);
                  Balance = Balance - withdrawAmount;
-                 
-                 sprintf (userBalance[y], "%ld", Balance);
-                 printf("Success ! Your new Balance is: %s$\n", userBalance[y]);
-                 Balance = 0;
+                 if ( Balance >= withdrawAmount)
+                 {
+                     sprintf (userBalance[y], "%ld", Balance);
+                     printf("Success ! Your new Balance is: %s$\n", userBalance[y]);
+                     Balance = 0;
+                 }
+                 else {
+                     printf("Sorry you don't have that amount on your account !\n");
+                 }
              }
              
              
@@ -684,29 +681,38 @@ int main(int argc, const char * argv[]) {
                  printf("To what account do you want to transfer your money:\n");
                  scanf("%d", &transferAccount);
                  
-                 Balance = strtol(userBalance[y], &ptr_userBalance, 10);
-                 Balance = Balance - transferAmount;
                  
-                 sprintf (userBalance[y], "%ld", Balance);
-                 printf("Success ! Your new Balance is: %s$\n", userBalance[y]);
-                 Balance = 0;
+                 
+                 
 
                  char userAccountNumber[a][SIZE];
-                 y = 0;
-                 sprintf (transferAccountArray[y], "%d", transferAccount);
-                 while ( y < 10) {
-                     if ( strcmp( transferAccountArray[y], userAccountNumber[y]) == 0 )
+                 
+                 
+                 sprintf (transferAccountArray[m], "%d", transferAccount);
+                 z = 0;
+                 m = 0;
+                 
+                 while ( z < 10 ) {
+                     if ( strcmp( transferAccountArray[z], userAccountNumber[z]) == 0 )
                      {
+                         printf("Success !\n");
                          Balance = strtol(userBalance[y], &ptr_userBalance, 10);
-                         Balance = Balance + transferAmount;
+                         Balance = Balance - transferAmount;
                          sprintf (userBalance[y], "%ld", Balance);
                          Balance = 0;
-                         y = y + 1;
+                         
+                         
+                         Balance = strtol(userBalance[y], &ptr_userBalance, 10);
+                         Balance = Balance + transferAmount;
+                         sprintf (userBalance[z], "%ld", Balance);
+                         Balance = 0;
+                         z = 11;
                      }
-                     else
+                     else if ( strcmp( transferAccountArray[z], userAccountNumber[z]) != 0 )
                      {
-                         y = y + 1;
+                         z = z + 1;
                      }
+                    
                  }
                  
                  
@@ -723,5 +729,3 @@ int main(int argc, const char * argv[]) {
 
     return 0;
 }
-
-
