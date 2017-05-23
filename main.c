@@ -39,6 +39,16 @@ int withdrawAmount;
 int userAccountNumber[a][SIZE];
 char menuAnswer[SIZE];
 char *ptr_menuAnswer = menuAnswer;
+char *balanceFileName[50];
+char file_extension[] = ".txt";
+char *userdata[2048];
+
+/*
+
+HOW THINGS WILL WORK
+user logs in with account number + password -> code opens file with account number -> checks password -> get string from file -> segment it + put each piece of data into a part of the userdata[] array -> ez.
+
+*/
 
 
 // int usingTempFile() {
@@ -88,43 +98,30 @@ int connectUser() {
     }
     if ( strcmp( welcomeAnswer, "YES") == 0 )
     {
-
-        printf("What is your first name ?\n");
-        scanf("%s", verifyFirstName);
-
-
-        if ( isupper(verifyFirstName[0]) )
-        {
-            verifyFirstName[0] = verifyFirstName[0];
+        char* userLoginAccNum[7];
+        int gg = 0;
+        while(gg < 1) {
+          printf("Account #: ");
+          scanf("%s", userLoginAccNum);
+          if ( strlen(userLoginAccNum) == 7 )
+          {
+              gg++;
+          } else {
+            printf("[ERROR] Invalid account number. Please try again.\n");
+          }
         }
-
-        else
-        {
-            verifyFirstName[0] = toupper( verifyFirstName[0] );
-        }
-
-
-
-        printf("What is your last name ?\n");
-        scanf("%s", verifyLastName);
-
-
-        if ( isupper(verifyLastName[0]) )
-        {
-            verifyLastName[0] = verifyLastName[0];
-        }
-
-        else
-        {
-            verifyLastName[0] = toupper( verifyLastName[0] );
-        }
-
-
-
-        printf("What is your password ?\n");
+        printf("Password: ");
         scanf("%s", verifyPassword);
         y = 0;
         while ( y < 10) {
+          char *kasai[50];
+          strcpy(balanceFileName, userLoginAccNum);
+          strcpy(balanceFileName, strcat(balanceFileName, file_extension));
+          FILE * balanceFile = fopen(balanceFileName, "w");
+          fgets(kasai, 50, balanceFile);
+          printf("String read: %s\n", buff);
+          fclose(f);
+          /*
             if ( strcmp( verifyFirstName, userFirstName[y]) == 0 && strcmp( verifyLastName, userLastName[y]) == 0 && strcmp( verifyPassword, userPassword[y]) == 0 )
             {
                 connected = 1;
@@ -134,7 +131,9 @@ int connectUser() {
             {
                 y = y + 1;
             }
+            */
         }
+
 
         printf("Sorry, it seems that your account doesn't exist\n");
         printf("Try Again !\n");
@@ -207,11 +206,12 @@ int connectUser() {
 
               // Don't mind this.
               int* startingBalance = 0;
-              char file_extension[] = ".txt";
-              char *balanceFileName[50];
               sprintf(balanceFileName, "%d", userAccountNumber[y][0]);
               strcpy(balanceFileName, strcat(balanceFileName, file_extension));
               FILE * balanceFile = fopen(balanceFileName, "w");
+              fprintf(balanceFile, "%s,", userFirstName[y]);
+              fprintf(balanceFile, "%s,", userLastName[y]);
+              fprintf(balanceFile, "%s,", userPassword[y]);
               fprintf(balanceFile, "%i", startingBalance);
               fclose(balanceFile);
 
