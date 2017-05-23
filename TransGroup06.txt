@@ -1,3 +1,6 @@
 Last Name      | First Name     | Account Number | Password | Balance
                |                |                |          |        
 NO             | GG             | 1118284        | RE     
+Last Name      | First Name     | Account Number | Password | Balance
+               |                |                |          |        
+NO             | GG             | 1119116        | Re     

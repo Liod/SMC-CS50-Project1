@@ -1,8 +1,0 @@
-{
-  "12345667-0": {
-    "firstname": "Albert",
-    "lastname": "Einstein",
-    "balance": "10",
-    "transactions": [{"withdraw": "60", "withdraw": "10", "deposit": "200"}]
-  }
-}
