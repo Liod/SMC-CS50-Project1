@@ -192,7 +192,6 @@ int connectUser() {
             welcomeAnswer2[h] = toupper(welcomeAnswer2[h]);
             h++;
           }
-          printf(welcomeAnswer2);
           if ( strcmp( welcomeAnswer2, "YES") == 0 )
           {
               numberOfClients = numberOfClients + 1;
@@ -206,14 +205,24 @@ int connectUser() {
 
               fichier = fopen("TransGroup06.txt", "a");
 
+              // Don't mind this.
+              int* startingBalance = 0;
+              char file_extension[] = ".txt";
+              char *balanceFileName[50];
+              sprintf(balanceFileName, "%d", userAccountNumber[y][0]);
+              strcpy(balanceFileName, strcat(balanceFileName, file_extension));
+              FILE * balanceFile = fopen(balanceFileName, "w");
+              fprintf(balanceFile, "%i", startingBalance);
+              fclose(balanceFile);
+
               if (fichier != NULL)
               {
                   unsigned long longueurLastName = 0;
                   unsigned long longueurFirstName = 0;
                   longueurLastName = strlen(userLastName[y]);
                   longueurFirstName = strlen(userFirstName[y]);
-                  fprintf(fichier, "Last Name      | First Name     | Account Number | Password\n");
-                  fprintf(fichier, "               |                |                |         \n");
+                  fprintf(fichier, "Last Name      | First Name     | Account Number | Password | Balance\n");
+                  fprintf(fichier, "               |                |                |          |        \n");
                   fprintf(fichier, "%s", userLastName[y]);
                   while (longueurLastName < 15)
                   {
@@ -325,7 +334,7 @@ int main(int argc, const char * argv[]) {
                  Balance = Balance + depositAmount;
 
                  sprintf (userBalance[y], "%ld", Balance);
-                 printf("Success ! Your new Balance is: %s$\n", userBalance[y]);
+                 printf("Success ! Your new Balance is: $%s\n", userBalance[y]);
                  Balance = 0;
              }
 
