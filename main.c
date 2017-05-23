@@ -178,16 +178,14 @@ int connectUser() {
 
 
 
-          printf("What is your password ?\n");
+          printf("What is your password?\n");
           scanf("%s", userPassword[y]);
 
-          printf("Are these informations correct ?\n");
+          printf("Is this information correct? (yes/no)\n");
           printf("First Name: %s\n", userFirstName[y]);
           printf("Last Name: %s\n", userLastName[y]);
           printf("Password: %s\n", userPassword[y]);
 
-          printf("1 - Yes\n");
-          printf("2 - No\n");
           scanf("%s", welcomeAnswer2);
           int h = 0;
           while(welcomeAnswer2[h]) {
@@ -198,7 +196,7 @@ int connectUser() {
           if ( strcmp( welcomeAnswer2, "YES") == 0 )
           {
               numberOfClients = numberOfClients + 1;
-              printf("Your account has been created\n");
+              printf("Your account has been created!\n");
               strcpy( &userBalance[y][0], "0" );
               srand( (unsigned int) time(NULL) );
               userAccountNumber[y][0] = rand() % 9999999 + 1111111;
@@ -231,7 +229,9 @@ int connectUser() {
                       longueurFirstName = longueurFirstName + 1;
                   }
                   fprintf(fichier, "|");
-                  fprintf(fichier, " 1647389-1      | %s     \n", userPassword[y]);
+                  fprintf(fichier, " %i        ", userAccountNumber[y][0]);
+                  fprintf(fichier, "|");
+                  fprintf(fichier, " %s     \n", userPassword[y]);
                   fclose(fichier); // On ferme le fichier qui a été ouvert
               }
 
@@ -249,8 +249,8 @@ int connectUser() {
 
     else
     {
-        printf("Sorry I didn't understand your answer\n");
-        printf("Try again !\n");
+        printf("Sorry, I didn't understand your answer.\n");
+        printf("Try again!\n");
     }
 
 
