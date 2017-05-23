@@ -119,8 +119,8 @@ int connectUser() {
           strcpy(balanceFileName, strcat(balanceFileName, file_extension));
           FILE * balanceFile = fopen(balanceFileName, "w");
           fgets(kasai, 50, balanceFile);
-          printf("String read: %s\n", buff);
-          fclose(f);
+          //printf("%s\n", kasai);
+          fclose(balanceFile);
           /*
             if ( strcmp( verifyFirstName, userFirstName[y]) == 0 && strcmp( verifyLastName, userLastName[y]) == 0 && strcmp( verifyPassword, userPassword[y]) == 0 )
             {

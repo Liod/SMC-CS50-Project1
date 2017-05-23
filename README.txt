@@ -8,4 +8,9 @@ What we've managed to do so far
 = One-way transfers.
 + Deposit, withdraw, balance, etc.
 
+GITHUB: https://github.com/Liod/SMC-CS50-Project1
+
+
+
+
 NOTE: The code will generate it's own text files.
