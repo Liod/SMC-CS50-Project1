@@ -78,12 +78,15 @@ int connectUser() {
     char verifyLastName[20];
     char verifyPassword[SIZE];
 
-    printf("Welcome to the Bank App !\n");
-    printf("Do you already have an account ?\n");
-    printf("1 - Yes\n");
-    printf("2 - No\n");
+    printf("Welcome to the Bank App!\n");
+    printf("Do you already have an account? (yes/no)\n");
     scanf("%s", welcomeAnswer);
-    if ( strcmp( welcomeAnswer, "Yes") == 0 )
+    int g = 0;
+    while(welcomeAnswer[g]) {
+      welcomeAnswer[g] = toupper(welcomeAnswer[g]);
+      g++;
+    }
+    if ( strcmp( welcomeAnswer, "YES") == 0 )
     {
 
         printf("What is your first name ?\n");
@@ -137,61 +140,7 @@ int connectUser() {
         printf("Try Again !\n");
 
     }
-    else if ( strcmp( welcomeAnswer, "yes") == 0)
-    {
-        printf("What is your first name ?\n");
-        scanf("%s", verifyFirstName);
-
-
-        if ( isupper(verifyFirstName[0]) )
-        {
-            verifyFirstName[0] = verifyFirstName[0];
-        }
-
-        else
-        {
-            verifyFirstName[0] = toupper( verifyFirstName[0] );
-        }
-
-
-
-        printf("What is your last name ?\n");
-        scanf("%s", verifyLastName);
-
-
-        if ( isupper(verifyLastName[0]) )
-        {
-            verifyLastName[0] = verifyLastName[0];
-        }
-
-        else
-        {
-            verifyLastName[0] = toupper( verifyLastName[0] );
-        }
-
-
-
-        printf("What is your password ?\n");
-        scanf("%s", verifyPassword);
-        y = 0;
-        while ( y < 10) {
-            if ( strcmp( verifyFirstName, userFirstName[y]) == 0 && strcmp( verifyLastName, userLastName[y]) == 0 && strcmp( verifyPassword, userPassword[y]) == 0 )
-            {
-                connected = 1;
-                return connected;
-            }
-            else
-            {
-                y = y + 1;
-            }
-        }
-
-        printf("Sorry, it seems that your account doesn't exist\n");
-        printf("Try Again !\n");
-
-    }
-
-    else if ( strcmp( welcomeAnswer, "No") == 0)
+    else if ( strcmp( welcomeAnswer, "NO") == 0)
     {
         if ( numberOfClients >= 5)
         {
@@ -199,305 +148,102 @@ int connectUser() {
         }
 
         else {
-        printf("Let's create an account\n");
-        y = y + 1;
-        printf("What is your first name ?\n");
-        scanf("%s", userFirstName[y]);
-        if ( isupper(userFirstName[y][0]) )
-        {
-            userFirstName[y][0] = userFirstName[y][0];
-        }
+          printf("Let's create an account\n");
+          y = y + 1;
+          printf("What is your first name ?\n");
+          scanf("%s", userFirstName[y]);
+          if ( isupper(userFirstName[y][0]) )
+          {
+              userFirstName[y][0] = userFirstName[y][0];
+          }
 
-        else
-        {
-         userFirstName[y][0] = toupper( userFirstName[y][0] );
-        }
+          else
+          {
+           userFirstName[y][0] = toupper( userFirstName[y][0] );
+          }
 
-        printf("What is your last name ?\n");
-        scanf("%s", userLastName[y]);
-
-
-            if ( isupper(userLastName[y][0]) )
-            {
-                userLastName[y][0] = userLastName[y][0];
-            }
-
-            else
-            {
-                userLastName[y][0] = toupper( userLastName[y][0] );
-            }
+          printf("What is your last name ?\n");
+          scanf("%s", userLastName[y]);
 
 
+              if ( isupper(userLastName[y][0]) )
+              {
+                  userLastName[y][0] = userLastName[y][0];
+              }
 
-        printf("What is your password ?\n");
-        scanf("%s", userPassword[y]);
-
-        printf("Are these informations correct ?\n");
-        printf("First Name: %s\n", userFirstName[y]);
-        printf("Last Name: %s\n", userLastName[y]);
-        printf("Password: %s\n", userPassword[y]);
-
-        printf("1 - Yes\n");
-        printf("2 - No\n");
-        scanf("%s", welcomeAnswer2);
-        if ( strcmp( welcomeAnswer2, "Yes") == 0 )
-        {
-            numberOfClients = numberOfClients + 1;
-            printf("Your account has been created\n");
-            strcpy( &userBalance[y][0], "0" );
-            srand( (unsigned int) time(NULL) );
-            userAccountNumber[y][0] = rand() % 9999999 + 1111111;
-            printf("Your account number is: %d\n", userAccountNumber[y][0]);
-
-            FILE* fichier = NULL;
-
-            fichier = fopen("TransGroup06.txt", "r+");
-
-            if (fichier != NULL)
-            {
-                unsigned long longueurLastName = 0;
-                unsigned long longueurFirstName = 0;
-                longueurLastName = strlen(userLastName[y]);
-                longueurFirstName = strlen(userFirstName[y]);
-                fprintf(fichier, "Last Name      | First Name     | Account Number | Password\n");
-                fprintf(fichier, "               |                |                |         \n");
-                fprintf(fichier, "%s", userLastName[y]);
-                while (longueurLastName < 15)
-                {
-                    fprintf(fichier, " ");
-                    longueurLastName = longueurLastName + 1;
-                }
-                fprintf(fichier, "|");
-                fprintf(fichier, " ");
-                fprintf(fichier, "%s", userFirstName[y]);
-                while (longueurFirstName < 15)
-                {
-                    fprintf(fichier, " ");
-                    longueurFirstName = longueurFirstName + 1;
-                }
-                fprintf(fichier, "|");
-                fprintf(fichier, " 1647389-1      | %s     \n", userPassword[y]);
-                fclose(fichier); // On ferme le fichier qui a été ouvert
-            }
-
-            connected = 1;
-            return connected;
-        }
-
-        else if ( strcmp( welcomeAnswer2, "yes") == 0 )
-        {
-            numberOfClients = numberOfClients + 1;
-            printf("Your account has been created\n");
-            strcpy( &userBalance[y][0], "0" );
-            srand( (unsigned int) time(NULL) );
-            userAccountNumber[y][0] = rand() % 9999999 + 1111111;
-            printf("Your account number is: %d\n", userAccountNumber[y][0]);
-
-
-            FILE* fichier = NULL;
-
-            fichier = fopen("TransGroup06.txt", "r+");
-
-            if (fichier != NULL)
-            {
-                unsigned long longueurLastName = 0;
-                unsigned long longueurFirstName = 0;
-                longueurLastName = strlen(userLastName[y]);
-                longueurFirstName = strlen(userFirstName[y]);
-                fprintf(fichier, "Last Name      | First Name     | Account Number | Password\n");
-                fprintf(fichier, "               |                |                |         \n");
-                fprintf(fichier, "%s", userLastName[y]);
-                while (longueurLastName < 15)
-                {
-                    fprintf(fichier, " ");
-                    longueurLastName = longueurLastName + 1;
-                }
-                fprintf(fichier, "|");
-                fprintf(fichier, " ");
-                fprintf(fichier, "%s", userFirstName[y]);
-                while (longueurFirstName < 15)
-                {
-                    fprintf(fichier, " ");
-                    longueurFirstName = longueurFirstName + 1;
-                }
-                fprintf(fichier, "|");
-                fprintf(fichier, " 1647389-1      | %s     \n", userPassword[y]);
-                fclose(fichier); // On ferme le fichier qui a été ouvert
-            }
-
-            connected = 1;
-            return connected;
-
-        }
-
-        else if ( strcmp( welcomeAnswer2, "No") == 0 )
-        {
-            printf("Let's try again\n");
-            return 0;
-        }
-
-        else if ( strcmp( welcomeAnswer2, "no") == 0 )
-        {
-            printf("Let's try again\n");
-            return 0;
-        }
-    }
-    }
-    else if ( strcmp( welcomeAnswer, "no") == 0)
-    {
-        if ( numberOfClients >= 5)
-        {
-            printf("We can't have more than 5 clients, sorry.\n");
-        }
-
-        else {
-        printf("Let's create an account\n");
-        y = y + 1;
-        printf("What is your first name ?\n");
-        scanf("%s", userFirstName[y]);
-
-
-            if ( isupper(userFirstName[y][0]) )
-            {
-                userFirstName[y][0] = userFirstName[y][0];
-            }
-
-            else
-            {
-                userFirstName[y][0] = toupper( userFirstName[y][0] );
-            }
+              else
+              {
+                  userLastName[y][0] = toupper( userLastName[y][0] );
+              }
 
 
 
-        printf("What is your last name ?\n");
-        scanf("%s", userLastName[y]);
+          printf("What is your password ?\n");
+          scanf("%s", userPassword[y]);
 
+          printf("Are these informations correct ?\n");
+          printf("First Name: %s\n", userFirstName[y]);
+          printf("Last Name: %s\n", userLastName[y]);
+          printf("Password: %s\n", userPassword[y]);
 
-            if ( isupper(userLastName[y][0]) )
-            {
-                userLastName[y][0] = userLastName[y][0];
-            }
+          printf("1 - Yes\n");
+          printf("2 - No\n");
+          scanf("%s", welcomeAnswer2);
+          int h = 0;
+          while(welcomeAnswer2[h]) {
+            welcomeAnswer2[h] = toupper(welcomeAnswer2[h]);
+            h++;
+          }
+          printf(welcomeAnswer2);
+          if ( strcmp( welcomeAnswer2, "YES") == 0 )
+          {
+              numberOfClients = numberOfClients + 1;
+              printf("Your account has been created\n");
+              strcpy( &userBalance[y][0], "0" );
+              srand( (unsigned int) time(NULL) );
+              userAccountNumber[y][0] = rand() % 9999999 + 1111111;
+              printf("Your account number is: %d\n", userAccountNumber[y][0]);
 
-            else
-            {
-                userLastName[y][0] = toupper( userLastName[y][0] );
-            }
+              FILE* fichier = NULL;
 
+              fichier = fopen("TransGroup06.txt", "a");
 
+              if (fichier != NULL)
+              {
+                  unsigned long longueurLastName = 0;
+                  unsigned long longueurFirstName = 0;
+                  longueurLastName = strlen(userLastName[y]);
+                  longueurFirstName = strlen(userFirstName[y]);
+                  fprintf(fichier, "Last Name      | First Name     | Account Number | Password\n");
+                  fprintf(fichier, "               |                |                |         \n");
+                  fprintf(fichier, "%s", userLastName[y]);
+                  while (longueurLastName < 15)
+                  {
+                      fprintf(fichier, " ");
+                      longueurLastName = longueurLastName + 1;
+                  }
+                  fprintf(fichier, "|");
+                  fprintf(fichier, " ");
+                  fprintf(fichier, "%s", userFirstName[y]);
+                  while (longueurFirstName < 15)
+                  {
+                      fprintf(fichier, " ");
+                      longueurFirstName = longueurFirstName + 1;
+                  }
+                  fprintf(fichier, "|");
+                  fprintf(fichier, " 1647389-1      | %s     \n", userPassword[y]);
+                  fclose(fichier); // On ferme le fichier qui a été ouvert
+              }
 
-        printf("What is your password ?\n");
-        scanf("%s", userPassword[y]);
-
-        printf("Are these informations correct ?\n");
-        printf("First Name: %s\n", userFirstName[y]);
-        printf("Last Name: %s\n", userLastName[y]);
-        printf("Password: %s\n", userPassword[y]);
-
-        printf("1 - Yes\n");
-        printf("2 - No\n");
-        scanf("%s", welcomeAnswer2);
-        if ( strcmp( welcomeAnswer2, "Yes") == 0 )
-        {
-            numberOfClients = numberOfClients + 1;
-            printf("Your account has been created\n");
-            strcpy( &userBalance[y][0], "0" );
-            srand( (unsigned int) time(NULL) );
-            userAccountNumber[y][0] = rand() % 9999999 + 1111111;
-            printf("Your account number is: %d\n", userAccountNumber[y][0]);
-
-
-            FILE* fichier = NULL;
-
-            fichier = fopen("TransGroup06.txt", "r+");
-
-            if (fichier != NULL)
-            {
-                unsigned long longueurLastName = 0;
-                unsigned long longueurFirstName = 0;
-                longueurLastName = strlen(userLastName[y]);
-                longueurFirstName = strlen(userFirstName[y]);
-                fprintf(fichier, "Last Name      | First Name     | Account Number | Password\n");
-                fprintf(fichier, "               |                |                |         \n");
-                fprintf(fichier, "%s", userLastName[y]);
-                while (longueurLastName < 15)
-                {
-                    fprintf(fichier, " ");
-                    longueurLastName = longueurLastName + 1;
-                }
-                fprintf(fichier, "|");
-                fprintf(fichier, " ");
-                fprintf(fichier, "%s", userFirstName[y]);
-                while (longueurFirstName < 15)
-                {
-                    fprintf(fichier, " ");
-                    longueurFirstName = longueurFirstName + 1;
-                }
-                fprintf(fichier, "|");
-                fprintf(fichier, " 1647389-1      | %s     \n", userPassword[y]);
-                fclose(fichier); // On ferme le fichier qui a été ouvert
-            }
-
-            connected = 1;
-            return connected;
-        }
-
-        else if ( strcmp( welcomeAnswer2, "yes") == 0 )
-        {
-            numberOfClients = numberOfClients + 1;
-            printf("Your account has been created\n");
-            strcpy( &userBalance[y][0], "0" );
-            srand( (unsigned int) time(NULL) );
-            userAccountNumber[y][0] = rand() % 9999999 + 1111111;
-            printf("Your account number is: %d\n", userAccountNumber[y][0]);
-
-
-            FILE* fichier = NULL;
-
-            fichier = fopen("TransGroup06.txt", "r+");
-
-            if (fichier != NULL)
-            {
-                unsigned long longueurLastName = 0;
-                unsigned long longueurFirstName = 0;
-                longueurLastName = strlen(userLastName[y]);
-                longueurFirstName = strlen(userFirstName[y]);
-                fprintf(fichier, "Last Name      | First Name     | Account Number | Password\n");
-                fprintf(fichier, "               |                |                |         \n");
-                fprintf(fichier, "%s", userLastName[y]);
-                while (longueurLastName < 15)
-                {
-                    fprintf(fichier, " ");
-                    longueurLastName = longueurLastName + 1;
-                }
-                fprintf(fichier, "|");
-                fprintf(fichier, " ");
-                fprintf(fichier, "%s", userFirstName[y]);
-                while (longueurFirstName < 15)
-                {
-                    fprintf(fichier, " ");
-                    longueurFirstName = longueurFirstName + 1;
-                }
-                fprintf(fichier, "|");
-                fprintf(fichier, " 1647389-1      | %s     \n", userPassword[y]);
-                fclose(fichier); // On ferme le fichier qui a été ouvert
-            }
-
-            connected = 1;
-            return connected;
-        }
-
-        else if ( strcmp( welcomeAnswer2, "No") == 0 )
-        {
-            printf("Let's try again\n");
-            return 0;
-        }
-
-        else if ( strcmp( welcomeAnswer2, "no") == 0 )
-        {
-            printf("Let's try again\n");
-            return 0;
-        }
-    }
+              connected = 1;
+              return connected;
+          }
+          else if ( strcmp( welcomeAnswer2, "NO") == 0 )
+          {
+              printf("Let's try again\n");
+              return 0;
+          }
+      }
     }
 
 
